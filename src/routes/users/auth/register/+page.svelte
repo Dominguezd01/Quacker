@@ -1,12 +1,18 @@
 <script>
-  let form, emailValue, userNameValue, passwordValue, displayNameValue
+  import Dialog from "../../../../lib/Components/Dialog.svelte"
+  let form,
+    emailValue,
+    userNameValue,
+    passwordValue,
+    displayNameValue,
+    divDialog
   import { API } from "../../../../lib/env.js"
   const handleSubmit = async () => {
     let body = {
-      email: emailValue,
+      emailUser: emailValue,
       password: passwordValue,
       display_name: displayNameValue,
-      user_name: userNameValue,
+      user_name_user: userNameValue,
     }
     let options = {
       method: "POST",
@@ -17,11 +23,29 @@
     }
     let response = await fetch(`${API}/users/auth/register`, options)
     response = await response.json()
-    if (response.status == 400) console.log(response.status)
+
+    if (response.status == 400) {
+      new Dialog({
+        target: divDialog,
+        props: {
+          title: "Error",
+          content: response.msg,
+        },
+      })
+    } else if (response.status == 401) {
+      new Dialog({
+        target: divDialog,
+        props: {
+          title: "Error",
+          content: response.msg,
+        },
+      })
+    }
     console.log(body)
   }
 </script>
 
+<div bind:this={divDialog}></div>
 <div class="grid items-center justify-center m-14">
   <form
     on:submit|preventDefault={handleSubmit}
