@@ -1,3 +1,6 @@
+<!--
+    This component is just a way to not use Sweetalert all the time in the code 
+-->
 <script>
   import { onMount } from "svelte"
   import Swal from "sweetalert2"
@@ -5,15 +8,10 @@
   let dialog
 
   Swal.fire({
+    icon: "error",
     title: title,
     text: content,
     showConfirmButton: true,
     confirmButtonColor: "#16a34a",
   })
 </script>
-
-<style>
-  .green {
-    background-color: green;
-  }
-</style>

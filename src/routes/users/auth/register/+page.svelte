@@ -1,5 +1,5 @@
 <script>
-  import Dialog from "../../../../lib/Components/Dialog.svelte"
+  import Dialog from "../../../../lib/Components/Dialogs/ErrorDialog.svelte"
   let form,
     emailValue,
     userNameValue,
