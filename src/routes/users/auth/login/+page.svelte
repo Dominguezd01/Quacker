@@ -8,6 +8,7 @@
     import WhiteLoader from "../../../../lib/Components/WhiteLoader.svelte"
     import GreenLoader from "../../../../lib/Components/GreenLoader.svelte"
     import InputLogin from "../../../../lib/Components/InputLogin.svelte"
+    import ErrorDialog from "../../../../lib/Components/Dialogs/ErrorDialog.svelte"
     let form,
         identifierValue,
         passwordValue,
@@ -17,6 +18,7 @@
         login = true
     onMount(() => {})
     const handleSubmit = async () => {
+        submitButton.addEventListener("click", preventClickWhenFetching)
         let body = {
             identifier: identifierValue,
             password: passwordValue,
@@ -28,10 +30,6 @@
             },
             body: JSON.stringify(body),
         }
-        let greenLoader = new GreenLoader({
-            target: buttonContainer,
-            hydrate: true,
-        })
         let response = await fetch(`${API}/users/auth/login`, options)
         response = await response.json()
         login = false
@@ -43,7 +41,6 @@
                     content: response.msg,
                 },
             })
-            login = true
         } else if (response.status == 401) {
             new ErrorDialog({
                 target: divDialog,
@@ -69,9 +66,19 @@
             setCookie("userId", response.userId, 15)
             console.log(document.cookie)
 
+            location.href = "/quacks/main"
             //redirect to main page
         }
+        submitButton.removeEventListener(
+            "click",
+            preventClickWhenFetching,
+            false,
+        )
         console.log(response)
+    }
+
+    const preventClickWhenFetching = (e) => {
+        e.preventDefault()
     }
 </script>
 
@@ -85,6 +92,7 @@
             <div class="grid items-center">
                 <label for="email">Username or Email</label>
                 <input
+                    required
                     type="text"
                     id="userName"
                     bind:value={identifierValue}
@@ -94,6 +102,7 @@
             <div class="grid items-center">
                 <label for="email">Password</label>
                 <input
+                    required
                     type="password"
                     id="password"
                     bind:value={passwordValue}
@@ -102,11 +111,11 @@
             </div>
         </div>
         <div bind:this={buttonContainer}>
-            {#if login}
-                <InputLogin></InputLogin>
-            {:else}
-                <GreenLoader></GreenLoader>
-            {/if}
+            <input
+                bind:this={submitButton}
+                type="submit"
+                class="bg-green-600 text-center w-36 h-12 rounded-lg hover:bg-green-400 transition 0.35s"
+            />
         </div>
     </form>
 </div>
