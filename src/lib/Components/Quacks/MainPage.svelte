@@ -55,18 +55,18 @@
         let options = {
             method: "POST",
             headers: {
-                authorization: getCookie("token"),
+                authorization: getCookie("token").trim(),
             },
         }
         let response = await fetch(`${API}/quacks/main`, options)
         response = await response.json()
         console.log(response.quacks)
-
+        if (response.status == 403) location.href = "/users/auth/login"
         return response.quacks
     }
 </script>
 
-<div class="grid items-center gap-2">
+<div class="grid items-center gap-2 overflow-scroll">
     {#await getMainQuacks()}
         <div class="grid items-center justify-center mt-6">
             <GreenLoader></GreenLoader>

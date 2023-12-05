@@ -69,6 +69,7 @@
             location.href = "/quacks/main"
             //redirect to main page
         }
+
         submitButton.removeEventListener(
             "click",
             preventClickWhenFetching,
