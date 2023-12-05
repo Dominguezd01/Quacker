@@ -3,6 +3,7 @@
     import Quack from "./Quack.svelte"
     import { API } from "../../env.js"
     import { getCookie } from "../../getCookie"
+    import QuackCreate from "./QuackCreate.svelte"
     let quacks = [
         {
             id: 1,
@@ -66,7 +67,8 @@
     }
 </script>
 
-<div class="grid items-center gap-2 overflow-scroll">
+<div class="grid items-center gap-2 overflow-x-scroll">
+    <QuackCreate></QuackCreate>
     {#await getMainQuacks()}
         <div class="grid items-center justify-center mt-6">
             <GreenLoader></GreenLoader>
