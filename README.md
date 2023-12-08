@@ -1,22 +1,30 @@
-# create-svelte
+# Ducker
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+This is Ducker, a Twitter inspired social media made for my final project of this year.
 
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+If you want to be able to use the app in a complete way, you should clone the [API](https://github.com/Dominguezd01/duckerAPI "API repo") repository.
 
 ## Developing
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+First you have to clone the repository:
+
+```bash
+git clone https://github.com/Dominguezd01/Ducker.git
+```
+
+Go to the directory
+
+```bash
+cd Ducker
+```
+
+Install all the dependencies:
+
+```bash
+npm install
+```
+
+Finally you can run the following commands depending on what you want:
 
 ```bash
 npm run dev
@@ -32,7 +40,3 @@ To create a production version of your app:
 ```bash
 npm run build
 ```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
