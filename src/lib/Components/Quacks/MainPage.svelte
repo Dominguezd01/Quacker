@@ -2,8 +2,9 @@
     import GreenLoader from "../../Components/GreenLoader.svelte"
     import Quack from "./Quack.svelte"
     import { API } from "../../env.js"
-    import { getCookie } from "../../getCookie"
+    import { getCookie } from "../../getCookie.js"
     import QuackCreate from "./QuackCreate.svelte"
+    import { onMount } from "svelte"
     let quacks = [
         {
             id: 1,
@@ -51,7 +52,11 @@
             requacksCount: 1433,
         },
     ]
-
+    onMount(() => {
+        if (getCookie("token") == "") {
+            location.href = "/users/auth/login"
+        }
+    })
     const getMainQuacks = async () => {
         let options = {
             method: "POST",

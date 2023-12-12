@@ -1,15 +1,23 @@
 <script>
+    import { getCookie } from "../../getCookie"
+    let quackContent
+    const handleSubmit = async () => {
+        console.log(quackContent.value.trim())
+        console.log(getCookie("token"))
+        console.log(getCookie("userId"))
+    }
 </script>
 
 <div
-    class="grid items-center text-center border-2 border-solid border-green-500 p-2 gap-3"
+    class="grid items-center text-center border-2 border-solid border-green-500 p-2 gap-3 rounded-md"
 >
     <div class="text-3xl font-bold">What is happening?</div>
-    <form class="grid gap-5">
+    <form class="grid gap-5" on:submit|preventDefault={handleSubmit}>
         <textarea
-            maxlength="350"
-            class="w-[100%] h-36 resize-none text-center text-base rounded bg-[#2e2e2e] border-solid border-green-500 border-2"
+            maxlength="500"
+            class="w-[100%] h-[160px] resize-none text-center text-base rounded-md bg-[#1a1a1a] border-solid border-green-500 border-2 p-1"
             placeholder="Tell us your thoughts"
+            bind:this={quackContent}
         >
         </textarea>
         <div class="flex flex-row-reverse">

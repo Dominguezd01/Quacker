@@ -5,22 +5,12 @@
     import requackPlain from "$lib/assets/requack.svg"
     import requackGreen from "$lib/assets/requackGreen.svg"
     import comment from "$lib/assets/comment.svg"
-    /**
-            {
-            id: 1,
-            content: "Amazing quack with some funny joke about your mother",
-            author: "@Dominguezd01",
-            displayAuthor: "Dominguezd01",
-            photoAuthor: "defaultProfilePicture.png",
-            likeCount: 33,
-            requacksCount: 1433,
-        },
-        */
+
     export let quackInfo
 </script>
 
 <a href="/quacks/quack/{quackInfo.id}">
-    <div class="grid items-center gap-4 border-solid border-2 p-4 rounded-sm">
+    <div class="grid items-center gap-4 border-solid border-2 p-4 rounded-md">
         <!--
         Image and names container
     -->
