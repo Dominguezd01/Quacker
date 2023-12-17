@@ -5,6 +5,8 @@
         console.log(quackContent.value.trim())
         console.log(getCookie("token"))
         console.log(getCookie("userId"))
+
+        //send parentPost as null to indicate is a quack by itself
     }
 </script>
 
