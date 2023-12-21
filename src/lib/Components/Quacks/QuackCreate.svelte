@@ -1,11 +1,36 @@
 <script>
     import { getCookie } from "../../getCookie"
+    import { API } from "../../env.js"
     let quackContent
     const handleSubmit = async () => {
         console.log(quackContent.value.trim())
-        console.log(getCookie("token"))
-        console.log(getCookie("userId"))
+        let content = quackContent.value.trim()
 
+        if (content.trim() == "" || content.length > 500) {
+            //show error
+            return
+        }
+
+        let body = {
+            content: content,
+            userId: getCookie("userId").trim(),
+            isReply: false,
+            isQuote: false,
+            parentPost: null,
+        }
+        let options = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                authorization: getCookie("token").trim(),
+            },
+            body: JSON.stringify(body),
+        }
+
+        let response = await fetch(`${API}/quacks/quack/create`, options)
+        response = await response.json()
+
+        console.log(response)
         //send parentPost as null to indicate is a quack by itself
     }
 </script>

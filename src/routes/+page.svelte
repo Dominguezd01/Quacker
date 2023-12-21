@@ -1,6 +1,6 @@
 <main>
     <p
-        class="text-[220px] font-bold grid items-center justify-center text-white font-[prompt] hover:text-green-500 transition-opacity"
+        class="text-[220px] font-bold grid items-center justify-center text-white font-[prompt] transition-all hover:text-green-500"
     >
         DUCKER
     </p>
@@ -26,11 +26,10 @@
     main {
         height: 100vh;
 
-        background: rgb(0, 0, 0);
-        background: linear-gradient(
-            193deg,
-            rgba(0, 0, 0, 1) 65%,
-            rgba(27, 207, 66, 1) 100%
-        );
+        background: rgb(11, 11, 11);
+    }
+
+    p {
+        transition: 1s;
     }
 </style>
