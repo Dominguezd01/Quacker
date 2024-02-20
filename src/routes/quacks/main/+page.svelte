@@ -1,10 +1,11 @@
 <script>
+    import Aside from "../../../lib/Components/Aside.svelte"
     import MainPage from "../../../lib/Components/Quacks/MainPage.svelte"
 </script>
 
 <main class="w-max h-max">
-    <div class="border-cyan-400 border-solid border-2 w-max h-max aside">
-        <nav>ASIDE</nav>
+    <div class="w-max h-max aside items-center grid">
+        <Aside />
     </div>
     <div class="w-max h-max p-1 main">
         <MainPage></MainPage>
