@@ -5,53 +5,7 @@
     import { getCookie } from "../../getCookie.js"
     import QuackCreate from "./QuackCreate.svelte"
     import { onMount } from "svelte"
-    let quacks = [
-        {
-            id: 1,
-            content: "Amazing quack with some funny joke about your mother",
-            author: "@Dominguezd01",
-            displayAuthor: "Dominguezd01",
-            photoAuthor: "./static/static/defaultProfilePicture.svg",
-            likeCount: 33,
-            requacksCount: 1433,
-        },
-        {
-            id: 2,
-            content: "Amazing quack with some funny joke about Fernando Alonso",
-            author: "@Dominguezd02",
-            displayAuthor: "Dominguezd02",
-            photoAuthor: "defaultProfilePicture.svg",
-            likeCount: 33,
-            requacksCount: 1433,
-        },
-        {
-            id: 3,
-            content: "Amazing quack with some funny joke about your mother",
-            author: "@Dominguezd01",
-            displayAuthor: "Dominguezd01",
-            photoAuthor: "defaultProfilePicture.svg",
-            likeCount: 33,
-            requacksCount: 1433,
-        },
-        {
-            id: 3,
-            content: "Amazing quack with some funny joke about your mother",
-            author: "@Dominguezd01",
-            displayAuthor: "Dominguezd01",
-            photoAuthor: "defaultProfilePicture.svg",
-            likeCount: 33,
-            requacksCount: 1433,
-        },
-        {
-            id: 2,
-            content: "Amazing quack with some funny joke about your mother",
-            author: "@Dominguezd01",
-            displayAuthor: "Dominguezd01",
-            photoAuthor: "defaultProfilePicture.png",
-            likeCount: 33,
-            requacksCount: 1433,
-        },
-    ]
+
     onMount(() => {
         if (getCookie("token") == "") {
             location.href = "/users/auth/login"
@@ -72,7 +26,7 @@
     }
 </script>
 
-<div class="grid items-center gap-2 overflow-x-scroll">
+<div class="grid items-center gap-2">
     <QuackCreate></QuackCreate>
     {#await getMainQuacks()}
         <div class="grid items-center justify-center mt-6">

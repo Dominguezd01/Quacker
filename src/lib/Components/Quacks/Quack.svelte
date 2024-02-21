@@ -5,37 +5,52 @@
     import requackPlain from "$lib/assets/requack.svg"
     import requackGreen from "$lib/assets/requackGreen.svg"
     import comment from "$lib/assets/comment.svg"
-
+    let imgLike
     export let quackInfo
+
+    const handleLike = () => {
+        if (quackInfo.like) {
+            imgLike.src = likePlain
+            quackInfo.like = false
+            return
+        }
+
+        imgLike.src = likeGreen
+        quackInfo.like = true
+    }
 </script>
 
-<a href="/quacks/quack/{quackInfo.id}">
+<!-- svelte-ignore a11y-click-events-have-key-events -->
+<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+<article>
     <div class="grid items-center gap-4 border-solid border-2 p-4 rounded-md">
         <!--
         Image and names container
     -->
-
-        <div class="grid items-center gap-4">
-            <div class="flex gap-7">
-                <img
-                    src={defaultProfilePicture}
-                    alt="User"
-                    class="w-16 rounded-[20%]"
-                />
-                <div class="grid items-center">
-                    <p class="text-sm/[0px] mb-[-22px]">
-                        {quackInfo.displayAuthor}
-                    </p>
-                    <p class="text-xs/[0px]">{quackInfo.author}</p>
+        <a href="/quacks/quack/{quackInfo.id}">
+            <div class="grid items-center gap-4">
+                <!-- svelte-ignore a11y-click-events-have-key-events -->
+                <div class="flex gap-7" role="button" tabindex="10px">
+                    <img
+                        src={defaultProfilePicture}
+                        alt="User"
+                        class="w-16 rounded-[20%]"
+                    />
+                    <div class="grid items-center">
+                        <p class="text-sm/[0px] mb-[-22px]">
+                            {quackInfo.displayAuthor}
+                        </p>
+                        <p class="text-xs/[0px]">{quackInfo.author}</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <!--
+            <!--
         Quack content
     -->
-        <div class="ml-24">
-            {quackInfo.content}
-        </div>
+            <div class="ml-24">
+                {quackInfo.content}
+            </div>
+        </a>
         <!--
         Button container
     -->
@@ -43,17 +58,28 @@
             <!--
             Like Button
         -->
+            <!-- svelte-ignore a11y-no-static-element-interactions -->
             {#if quackInfo.like}
-                <div class="flex gap-2">
+                <div class="flex gap-2" on:click={handleLike}>
                     <button>
-                        <img src={likeGreen} alt="Like button" class="w-5" />
+                        <img
+                            bind:this={imgLike}
+                            src={likeGreen}
+                            alt="Like button"
+                            class="w-5"
+                        />
                     </button>
                     <p class="text-green-500">{quackInfo.likeCount}</p>
                 </div>
             {:else}
-                <div class="flex gap-2">
+                <div class="flex gap-2" on:click={handleLike}>
                     <button>
-                        <img src={likePlain} alt="Like button" class="w-5" />
+                        <img
+                            bind:this={imgLike}
+                            src={likePlain}
+                            alt="Like button"
+                            class="w-5"
+                        />
                     </button>
                     <p>{quackInfo.likeCount}</p>
                 </div>
@@ -61,19 +87,19 @@
             <!--
             Requack Button
         -->
-            {#if quackInfo.like}
-                <div class="flex gap-2">
-                    <button>
-                        <img src={requackPlain} alt="Like button" class="w-5" />
-                    </button>
-                    <p>{quackInfo.requacksCount}</p>
-                </div>
-            {:else}
+            {#if quackInfo.repost}
                 <div class="flex gap-2">
                     <button>
                         <img src={requackGreen} alt="Like button" class="w-5" />
                     </button>
                     <p class="text-green-500">{quackInfo.requacksCount}</p>
+                </div>
+            {:else}
+                <div class="flex gap-2">
+                    <button>
+                        <img src={requackPlain} alt="Like button" class="w-5" />
+                    </button>
+                    <p>{quackInfo.requacksCount}</p>
                 </div>
             {/if}
 
@@ -85,4 +111,4 @@
             </div>
         </div>
     </div>
-</a>
+</article>
