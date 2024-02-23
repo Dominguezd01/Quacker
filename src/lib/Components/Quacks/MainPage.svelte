@@ -16,7 +16,11 @@
             method: "POST",
             headers: {
                 authorization: getCookie("token").trim(),
+                "Content-Type": "application/json",
             },
+            body: JSON.stringify({
+                userId: getCookie("userId"),
+            }),
         }
         let response = await fetch(`${API}/quacks/main`, options)
         response = await response.json()

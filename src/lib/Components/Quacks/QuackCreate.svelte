@@ -4,16 +4,16 @@
     let quackContent
     const handleSubmit = async () => {
         console.log(quackContent.value.trim())
-        let content = quackContent.value.trim()
+        let contentQuack = quackContent.value.trim()
 
-        if (content.trim() == "" || content.length > 500) {
-            //show error
+        if (contentQuack.trim() == "" || contentQuack.length > 500) {
+            console.log("TOOO LONG")
             return
         }
-
-        let body = {
-            content: content,
-            userId: getCookie("userId").trim(),
+        console.log(getCookie("userId"))
+        let bodyContent = {
+            content: contentQuack,
+            userId: getCookie("userId"),
             isReply: false,
             isQuote: false,
             parentPost: null,
@@ -24,7 +24,7 @@
                 "Content-Type": "application/json",
                 authorization: getCookie("token").trim(),
             },
-            body: JSON.stringify(body),
+            body: JSON.stringify(bodyContent),
         }
 
         let response = await fetch(`${API}/quacks/quack/create`, options)
