@@ -10,8 +10,8 @@
 		"web": "npm run dev -- --open"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "2.1.1",
-		"@sveltejs/kit": "^1.27.6",
+		"@sveltejs/adapter-auto": "3.1.1",
+		"@sveltejs/kit": "^2.5.1",
 		"@types/vex-js": "^2.3.33",
 		"autoprefixer": "^10.4.16",
 		"postcss": "^8.4.32",
