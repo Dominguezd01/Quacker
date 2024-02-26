@@ -64,6 +64,8 @@
             console.log(getCookie("token"))
             setCookie("token", response.token, 15)
             setCookie("userId", response.userId, 15)
+            setCookie("userName", response.userName, 15)
+            setCookie("userDisplayName", response.displayName, 15)
             console.log(document.cookie)
 
             location.href = "/quacks/main"

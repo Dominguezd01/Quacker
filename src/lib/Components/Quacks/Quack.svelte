@@ -27,7 +27,7 @@
         <!--
         Image and names container
     -->
-        <a href="/quacks/quack/{quackInfo.id}">
+        <a href="/quacks/quack/{quackInfo.quack_id}">
             <div class="grid items-center gap-4">
                 <!-- svelte-ignore a11y-click-events-have-key-events -->
                 <div class="flex gap-7" role="button" tabindex="10px">
@@ -38,9 +38,11 @@
                     />
                     <div class="grid items-center">
                         <p class="text-sm/[0px] mb-[-22px]">
-                            {quackInfo.displayAuthor}
+                            {quackInfo.user_quack[0].users.display_name}
                         </p>
-                        <p class="text-xs/[0px]">{quackInfo.author}</p>
+                        <p class="text-xs/[0px]">
+                            {quackInfo.user_quack[0].users.user_name}
+                        </p>
                     </div>
                 </div>
             </div>
@@ -81,7 +83,7 @@
                             class="w-5"
                         />
                     </button>
-                    <p>{quackInfo.likeCount}</p>
+                    <p>{quackInfo._count.user_quack_like}</p>
                 </div>
             {/if}
             <!--
@@ -99,7 +101,7 @@
                     <button>
                         <img src={requackPlain} alt="Like button" class="w-5" />
                     </button>
-                    <p>{quackInfo.requacksCount}</p>
+                    <p>{quackInfo._count.requacks}</p>
                 </div>
             {/if}
 
@@ -107,7 +109,10 @@
                 <button>
                     <img src={comment} class="w-5" alt="" />
                 </button>
-                <p>{quackInfo.commentCount}</p>
+                <p>
+                    {quackInfo._count
+                        .comments_comments_quack_id_commentedToquacks}
+                </p>
             </div>
         </div>
     </div>
