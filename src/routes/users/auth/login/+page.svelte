@@ -60,13 +60,13 @@
             })
 
             document.cookie = `token=${response.token}`
+            console.log(response)
 
             console.log(getCookie("token"))
             setCookie("token", response.token, 15)
             setCookie("userId", response.userId, 15)
             setCookie("userName", response.userName, 15)
-            setCookie("userDisplayName", response.displayName, 15)
-            console.log(document.cookie)
+            setCookie("userDisplayName", response.userDisplayName, 15)
 
             location.href = "/quacks/main"
             //redirect to main page
@@ -118,6 +118,7 @@
                 bind:this={submitButton}
                 type="submit"
                 class="bg-green-600 text-center w-36 h-12 rounded-lg hover:bg-green-400 transition 0.35s"
+                Login
             />
         </div>
     </form>

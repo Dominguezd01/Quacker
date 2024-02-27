@@ -12,11 +12,13 @@
         if (quackInfo.like) {
             imgLike.src = likePlain
             quackInfo.like = false
+            quackInfo._count.user_quack_like -= 1
             return
         }
 
         imgLike.src = likeGreen
         quackInfo.like = true
+        quackInfo._count.user_quack_like += 1
     }
 </script>
 
@@ -71,7 +73,9 @@
                             class="w-5"
                         />
                     </button>
-                    <p class="text-green-500">{quackInfo.likeCount}</p>
+                    <p class="text-green-500">
+                        {quackInfo._count.user_quack_like}
+                    </p>
                 </div>
             {:else}
                 <div class="flex gap-2" on:click={handleLike}>
@@ -94,7 +98,7 @@
                     <button>
                         <img src={requackGreen} alt="Like button" class="w-5" />
                     </button>
-                    <p class="text-green-500">{quackInfo.requacksCount}</p>
+                    <p class="text-green-500">{quackInfo._count.requacks}</p>
                 </div>
             {:else}
                 <div class="flex gap-2">

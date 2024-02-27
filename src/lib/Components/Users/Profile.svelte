@@ -1,6 +1,9 @@
 <script>
     //In this component the id is the user profile
-    export let userID
+
+    export let userInfo
+
+    console.log(userInfo)
     import { API } from "../../env.js"
     import { getCookie } from "../../getCookie.js"
     const sendFollow = async () => {
@@ -12,7 +15,7 @@
             },
             body: JSON.stringify({
                 userId: getCookie("userId"),
-                userFollowedId: userID,
+                userFollowedId: userInfo.user_id,
             }),
         }
         let response = await fetch(`${API}/usersFollows/follow`, options)
@@ -24,6 +27,10 @@
     }
 </script>
 
-<button class="bg-green-500 p-20 w-[900px]" on:click={sendFollow}>
+<h1>{userInfo.user.display_name}</h1>
+<button
+    class="bg-green-500 p-20 w-[60px] h-[30px] text-center grid place-items-center"
+    on:click={sendFollow}
+>
     FOLLOW
 </button>
