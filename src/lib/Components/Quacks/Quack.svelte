@@ -1,4 +1,6 @@
 <script>
+    import { API } from "../../env.js"
+    import { getCookie } from "../../getCookie.js"
     import defaultProfilePicture from "$lib/assets/defaultProfilePicture.jpg"
     import likePlain from "$lib/assets/like.svg"
     import likeGreen from "$lib/assets/likeGreen.svg"
@@ -8,17 +10,59 @@
     let imgLike
     export let quackInfo
 
-    const handleLike = () => {
+    const handleLike = async () => {
         if (quackInfo.like) {
             imgLike.src = likePlain
             quackInfo.like = false
             quackInfo._count.user_quack_like -= 1
+            disLikeQuack()
             return
         }
 
         imgLike.src = likeGreen
         quackInfo.like = true
         quackInfo._count.user_quack_like += 1
+        await likeQuack()
+    }
+
+    const likeQuack = async () => {
+        console.log(getCookie("token"))
+        let options = {
+            method: "POST",
+            headers: {
+                authorization: getCookie("token").trim(),
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                userId: getCookie("userId"),
+                quackId: quackInfo.quack_id,
+            }),
+        }
+
+        let response = await fetch(`${API}/quacks/quack/like`, options)
+        response = await response.json()
+
+        console.log(response)
+    }
+
+    const disLikeQuack = async () => {
+        console.log(getCookie("token"))
+        let options = {
+            method: "POST",
+            headers: {
+                authorization: getCookie("token").trim(),
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                userId: getCookie("userId"),
+                quackId: quackInfo.quack_id,
+            }),
+        }
+
+        let response = await fetch(`${API}/quacks/quack/dislike`, options)
+        response = await response.json()
+
+        console.log(response)
     }
 </script>
 
