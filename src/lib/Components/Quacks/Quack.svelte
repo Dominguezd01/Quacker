@@ -7,15 +7,20 @@
     import requackPlain from "$lib/assets/requack.svg"
     import requackGreen from "$lib/assets/requackGreen.svg"
     import comment from "$lib/assets/comment.svg"
-    let imgLike
+    import { onMount } from "svelte"
+    let imgLike, greenLikeCounter
     export let quackInfo
-
+    onMount(() => {
+        console.log(greenLikeCounter)
+    })
     const handleLike = async () => {
-        if (quackInfo.like) {
+        if (quackInfo.user_quack_like.length > 0) {
             imgLike.src = likePlain
             quackInfo.like = false
             quackInfo._count.user_quack_like -= 1
-            disLikeQuack()
+
+            await disLikeQuack()
+            delete quackInfo.user_quack_like[0]
             return
         }
 
@@ -23,10 +28,10 @@
         quackInfo.like = true
         quackInfo._count.user_quack_like += 1
         await likeQuack()
+        quackInfo.user_quack_like[0] = true
     }
 
     const likeQuack = async () => {
-        console.log(getCookie("token"))
         let options = {
             method: "POST",
             headers: {
@@ -43,12 +48,17 @@
         response = await response.json()
 
         console.log(response)
+
+        if (response.status != 200) {
+            quackInfo.like = false
+            imgLike.src = likePlain
+            quackInfo._count.user_quack_like -= 1
+        }
     }
 
     const disLikeQuack = async () => {
-        console.log(getCookie("token"))
         let options = {
-            method: "POST",
+            method: "DELETE",
             headers: {
                 authorization: getCookie("token").trim(),
                 "Content-Type": "application/json",
@@ -63,6 +73,9 @@
         response = await response.json()
 
         console.log(response)
+        if (response.status != 200) {
+            quackInfo.like = true
+        }
     }
 </script>
 
@@ -107,7 +120,7 @@
             Like Button
         -->
             <!-- svelte-ignore a11y-no-static-element-interactions -->
-            {#if quackInfo.like}
+            {#if quackInfo.user_quack_like.length > 0}
                 <div class="flex gap-2" on:click={handleLike}>
                     <button>
                         <img
