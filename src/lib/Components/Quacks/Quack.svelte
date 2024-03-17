@@ -40,10 +40,7 @@
         let response = await fetch(`${API}/quacks/quack/like`, options)
         response = await response.json()
 
-        console.log(response)
-
         if (response.status !== 200) {
-            console.log("COMO ENTRES AQUI ME MATO")
             imgLike.src = likePlain
             isLike = false
             likeCount -= 1
@@ -68,13 +65,10 @@
         let response = await fetch(`${API}/quacks/quack/dislike`, options)
         response = await response.json()
 
-        console.log(response)
         if (response.status !== 200) {
             isLike = true
             likeCount--
         }
-
-        console.log(likeCount)
     }
 </script>
 
