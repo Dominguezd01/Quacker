@@ -1,4 +1,5 @@
 <script>
+    export let quackInfo
     import { API } from "../../env.js"
     import { getCookie } from "../../getCookie.js"
     import defaultProfilePicture from "$lib/assets/defaultProfilePicture.jpg"
@@ -9,29 +10,21 @@
     import comment from "$lib/assets/comment.svg"
     import { onMount } from "svelte"
     let imgLike, greenLikeCounter
-    export let quackInfo
-    onMount(() => {
-        console.log(greenLikeCounter)
-    })
+    let likeCount = quackInfo._count.user_quack_like
+    let isLike = quackInfo.user_quack_like.length > 0
+    onMount(() => {})
     const handleLike = async () => {
-        if (quackInfo.user_quack_like.length > 0) {
-            imgLike.src = likePlain
-            quackInfo.like = false
-            quackInfo._count.user_quack_like -= 1
-
+        if (isLike) {
             await disLikeQuack()
-            delete quackInfo.user_quack_like[0]
             return
         }
-
-        imgLike.src = likeGreen
-        quackInfo.like = true
-        quackInfo._count.user_quack_like += 1
         await likeQuack()
-        quackInfo.user_quack_like[0] = true
     }
 
     const likeQuack = async () => {
+        isLike = true
+        likeCount++
+
         let options = {
             method: "POST",
             headers: {
@@ -49,14 +42,17 @@
 
         console.log(response)
 
-        if (response.status != 200) {
-            quackInfo.like = false
+        if (response.status !== 200) {
+            console.log("COMO ENTRES AQUI ME MATO")
             imgLike.src = likePlain
-            quackInfo._count.user_quack_like -= 1
+            isLike = false
+            likeCount -= 1
         }
     }
 
     const disLikeQuack = async () => {
+        isLike = false
+        likeCount -= 1
         let options = {
             method: "DELETE",
             headers: {
@@ -73,9 +69,12 @@
         response = await response.json()
 
         console.log(response)
-        if (response.status != 200) {
-            quackInfo.like = true
+        if (response.status !== 200) {
+            isLike = true
+            likeCount--
         }
+
+        console.log(likeCount)
     }
 </script>
 
@@ -120,7 +119,7 @@
             Like Button
         -->
             <!-- svelte-ignore a11y-no-static-element-interactions -->
-            {#if quackInfo.user_quack_like.length > 0}
+            {#if isLike}
                 <div class="flex gap-2" on:click={handleLike}>
                     <button>
                         <img
@@ -131,7 +130,7 @@
                         />
                     </button>
                     <p class="text-green-500">
-                        {quackInfo._count.user_quack_like}
+                        {likeCount}
                     </p>
                 </div>
             {:else}
@@ -144,7 +143,7 @@
                             class="w-5"
                         />
                     </button>
-                    <p>{quackInfo._count.user_quack_like}</p>
+                    <p>{likeCount}</p>
                 </div>
             {/if}
             <!--
