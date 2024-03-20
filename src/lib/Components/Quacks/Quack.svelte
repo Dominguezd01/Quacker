@@ -9,9 +9,11 @@
     import requackGreen from "$lib/assets/requackGreen.svg"
     import comment from "$lib/assets/comment.svg"
     import { onMount } from "svelte"
-    let imgLike, greenLikeCounter
+    let imgLike, greenLikeCounter, imgRequack
     let likeCount = quackInfo._count.user_quack_like
     let isLike = quackInfo.user_quack_like.length > 0
+    let isRepost = quackInfo.requacks.length > 0
+    let repostCount = quackInfo._count.requacks
     onMount(() => {})
     const handleLike = async () => {
         if (isLike) {
@@ -19,6 +21,14 @@
             return
         }
         await likeQuack()
+    }
+
+    const handleRequack = async () => {
+        if (isRepost) {
+            await disRequack()
+            return
+        }
+        await requack()
     }
 
     const likeQuack = async () => {
@@ -68,6 +78,58 @@
         if (response.status !== 200) {
             isLike = true
             likeCount--
+        }
+    }
+
+    const requack = async () => {
+        isRepost = true
+        repostCount += 1
+
+        let options = {
+            method: "POST",
+            headers: {
+                authorization: getCookie("token").trim(),
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                userId: getCookie("userId"),
+                quackId: quackInfo.quack_id,
+            }),
+        }
+
+        let response = await fetch(`${API}/quacks/quack/requack`, options)
+        response = await response.json()
+
+        if (response.status !== 200) {
+            // imgRequack.src = requackPlain
+            isRepost = false
+            repostCount -= 1
+        }
+    }
+
+    const disRequack = async () => {
+        isRepost = false
+        repostCount -= 1
+
+        let options = {
+            method: "DELETE",
+            headers: {
+                authorization: getCookie("token").trim(),
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                userId: getCookie("userId"),
+                quackId: quackInfo.quack_id,
+            }),
+        }
+
+        let response = await fetch(`${API}/quacks/quack/deleteRequack`, options)
+        response = await response.json()
+
+        if (response.status !== 200) {
+            //re.src = likePlain
+            isRepost = true
+            repostCount -= 1
         }
     }
 </script>
@@ -143,19 +205,30 @@
             <!--
             Requack Button
         -->
-            {#if quackInfo.repost}
-                <div class="flex gap-2">
+            <!-- svelte-ignore a11y-no-static-element-interactions -->
+            {#if isRepost}
+                <div class="flex gap-2" on:click={handleRequack}>
                     <button>
-                        <img src={requackGreen} alt="Like button" class="w-5" />
+                        <img
+                            bind:this={imgRequack}
+                            src={requackGreen}
+                            alt="Like button"
+                            class="w-5"
+                        />
                     </button>
-                    <p class="text-green-500">{quackInfo._count.requacks}</p>
+                    <p class="text-green-500">{repostCount}</p>
                 </div>
             {:else}
-                <div class="flex gap-2">
+                <div class="flex gap-2" on:click={handleRequack}>
                     <button>
-                        <img src={requackPlain} alt="Like button" class="w-5" />
+                        <img
+                            src={requackPlain}
+                            alt="Like button"
+                            class="w-5"
+                            bind:this={imgRequack}
+                        />
                     </button>
-                    <p>{quackInfo._count.requacks}</p>
+                    <p>{repostCount}</p>
                 </div>
             {/if}
 

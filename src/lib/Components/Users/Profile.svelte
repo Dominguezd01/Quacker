@@ -15,11 +15,11 @@
             },
             body: JSON.stringify({
                 userId: getCookie("userId"),
-                userFollowedId: userInfo.user_id,
+                userFollowedId: userInfo.user.user_id,
             }),
         }
         let response = await fetch(`${API}/usersFollows/follow`, options)
-
+        response = await response.json()
         if (response.status != 200)
             return console.log(`ERROR ${response.status}`)
 
