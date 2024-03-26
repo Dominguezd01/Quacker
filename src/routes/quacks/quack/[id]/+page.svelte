@@ -7,6 +7,7 @@
     import GreenLoader from "../../../../lib/Components/GreenLoader.svelte"
     import { getCookie } from "../../../../lib/getCookie.js"
     import Aside from "../../../../lib/Components/Aside.svelte"
+    import CreateComment from "../../../../lib/Components/Comments/CreateComment.svelte"
     onMount(() => {
         if (browser) {
             checkCookie()
@@ -27,7 +28,10 @@
                 userId: getCookie("userId").trim(),
             }),
         }
-        let response = await fetch(`${API}/quacks/quack/${quack_id}`, options)
+        let response = await fetch(
+            `${API}/quacks/quack/info/${quack_id}`,
+            options,
+        )
         response = await response.json()
         console.log(response)
         return response
@@ -39,7 +43,10 @@
     {#await getQuack()}
         <GreenLoader></GreenLoader>
     {:then quack}
-        <Quack quackInfo={quack.quack}></Quack>
+        <div class="grid items-center gap-0">
+            <Quack quackInfo={quack.quack}></Quack>
+            <CreateComment></CreateComment>
+        </div>
     {/await}
     <div class="border-cyan-400 border-solid border-2 w-max h-max aside2">
         <nav>ASIDE</nav>
