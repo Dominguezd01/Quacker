@@ -11,7 +11,7 @@
     })
 </script>
 
-<div class="grid place-items-center h-[100vh]">
+<div class="flex justify-center flex-col place-items-center h-[80vh] gap-32">
     <nav class="flex items-center flex-col gap-2">
         <a href="/quacks/main" class="flex gap-1 items-center">
             <img
@@ -31,7 +31,7 @@
         <hr class="w-[75%] opacity-50" />
     </nav>
 
-    <a href="/profile" class="flex gap-3 items-center mt-20">
+    <a href="/profile" class="flex gap-3 items-center">
         <img
             src={getImage(profilePic)}
             alt="User icon"

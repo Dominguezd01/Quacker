@@ -30,7 +30,7 @@
     }
 </script>
 
-<div class="grid items-center gap-2">
+<div class="grid items-center gap-2 w-[100%]">
     <QuackCreate></QuackCreate>
     {#await getMainQuacks()}
         <div class="grid items-center justify-center mt-6">

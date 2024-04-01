@@ -2,6 +2,7 @@
     import Aside from "../../../lib/Components/Aside.svelte"
     import MainPage from "../../../lib/Components/Quacks/MainPage.svelte"
     import duckGreen from "$lib/assets/duckGreen.svg"
+    import RigthAside from "../../../lib/Components/RigthAside.svelte"
 </script>
 
 <main class="w-max h-max">
@@ -12,11 +13,11 @@
         </div>
         <Aside />
     </div>
-    <div class="w-max h-max p-1 main">
+    <div class="w-max h-max main mt-1">
         <MainPage></MainPage>
     </div>
-    <div class="border-cyan-400 border-solid border-2 w-max h-max aside2">
-        <nav>ASIDE</nav>
+    <div class="h-max aside2">
+        <RigthAside></RigthAside>
     </div>
 </main>
 
@@ -24,7 +25,7 @@
     main {
         display: grid;
         grid-template-areas: "aside main aside2";
-        grid-template-columns: 5fr 8fr 3r;
+        grid-template-columns: 5fr 10fr;
         width: 100%;
         height: 100%;
     }
