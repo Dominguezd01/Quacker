@@ -24,7 +24,7 @@
     main {
         display: grid;
         grid-template-areas: "aside main aside2";
-        grid-template-columns: 4fr 10fr 2fr;
+        grid-template-columns: 5fr 8fr 3r;
         width: 100%;
         height: 100%;
     }

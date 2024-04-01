@@ -59,15 +59,11 @@
                 },
             })
 
-            document.cookie = `token=${response.token}`
-            console.log(response)
-
-            console.log(getCookie("token"))
             setCookie("token", response.token, 15)
             setCookie("userId", response.userId, 15)
             setCookie("userName", response.userName, 15)
             setCookie("userDisplayName", response.userDisplayName, 15)
-
+            localStorage.setItem("userImage", response.profileImage)
             location.href = "/quacks/main"
             //redirect to main page
         }

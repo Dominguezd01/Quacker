@@ -2,6 +2,7 @@
     export let quackInfo
     import { API } from "../../env.js"
     import { getCookie } from "../../getCookie.js"
+    import { getImage } from "../../getImage.js"
     import defaultProfilePicture from "$lib/assets/defaultProfilePicture.jpg"
     import likePlain from "$lib/assets/like.svg"
     import likeGreen from "$lib/assets/likeGreen.svg"
@@ -14,7 +15,9 @@
     let isLike = quackInfo.user_quack_like.length > 0
     let isRepost = quackInfo.requacks.length > 0
     let repostCount = quackInfo._count.requacks
-    onMount(() => {})
+    onMount(() => {
+        console.log(quackInfo)
+    })
     const handleLike = async () => {
         if (isLike) {
             await disLikeQuack()
@@ -146,9 +149,11 @@
                 <!-- svelte-ignore a11y-click-events-have-key-events -->
                 <div class="flex gap-7" role="button" tabindex="10px">
                     <img
-                        src={defaultProfilePicture}
+                        src={getImage(
+                            quackInfo.user_quack[0].users.profile_picture,
+                        )}
                         alt="User"
-                        class="w-16 rounded-[20%]"
+                        class="w-16 border-solid border-2 bg-white rounded-[20%]"
                     />
                     <div class="grid items-center">
                         <p class="text-sm/[0px] mb-[-22px]">
@@ -237,8 +242,7 @@
                     <img src={comment} class="w-5" alt="" />
                 </button>
                 <p>
-                    {quackInfo._count
-                        .comments_comments_quack_id_commentedToquacks}
+                    {quackInfo._count.quack_comments}
                 </p>
             </div>
         </div>

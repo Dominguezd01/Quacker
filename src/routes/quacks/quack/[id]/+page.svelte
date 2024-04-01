@@ -43,9 +43,9 @@
     {#await getQuack()}
         <GreenLoader></GreenLoader>
     {:then quack}
-        <div class="grid items-center gap-0">
+        <div class="flex justify-items-start flex-col gap-2 h-[100vh]">
             <Quack quackInfo={quack.quack}></Quack>
-            <CreateComment></CreateComment>
+            <CreateComment quackId={quack.quack.quack_id}></CreateComment>
         </div>
     {/await}
     <div class="border-cyan-400 border-solid border-2 w-max h-max aside2">
