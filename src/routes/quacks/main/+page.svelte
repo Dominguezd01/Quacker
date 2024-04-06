@@ -3,6 +3,14 @@
     import MainPage from "../../../lib/Components/Quacks/MainPage.svelte"
     import duckGreen from "$lib/assets/duckGreen.svg"
     import RigthAside from "../../../lib/Components/RigthAside.svelte"
+    import { onMount } from "svelte"
+    import { checkCookie } from "../../../lib/checkCookie"
+    import { browser } from "$app/environment"
+    onMount(() => {
+        if (browser) {
+            checkCookie()
+        }
+    })
 </script>
 
 <main class="w-max h-max">

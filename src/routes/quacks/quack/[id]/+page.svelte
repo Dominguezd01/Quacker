@@ -8,7 +8,7 @@
     import { getCookie } from "../../../../lib/getCookie.js"
     import Aside from "../../../../lib/Components/Aside.svelte"
     import CreateComment from "../../../../lib/Components/Comments/CreateComment.svelte"
-    onMount(() => {
+    onMount(async () => {
         if (browser) {
             checkCookie()
         }
@@ -36,6 +36,26 @@
         console.log(response)
         return response
     }
+
+    const getComments = async () => {
+        let url = new URL(location.href)
+        let quack_id =
+            url.pathname.split("/")[url.pathname.split("/").length - 1]
+        let options = {
+            method: "GET",
+            headers: {
+                authorization: getCookie("token").trim(),
+                "Content-Type": "application/json",
+            },
+        }
+        let response = await fetch(
+            `${API}/comments/comment/getComments/${quack_id}`,
+            options,
+        )
+        response = await response.json()
+        console.log(response)
+        return response
+    }
 </script>
 
 <main>
@@ -47,6 +67,9 @@
             <Quack quackInfo={quack.quack}></Quack>
             <CreateComment quackId={quack.quack.quack_id}></CreateComment>
         </div>
+    {/await}
+    {#await getComments()}
+        <GreenLoader></GreenLoader>
     {/await}
     <div class="border-cyan-400 border-solid border-2 w-max h-max aside2">
         <nav>ASIDE</nav>

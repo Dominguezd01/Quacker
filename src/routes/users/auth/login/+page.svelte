@@ -2,6 +2,7 @@
     import { getCookie } from "../../../../lib/getCookie.js"
     import { setCookie } from "../../../../lib/setCookie.js"
     import { API } from "../../../../lib/env.js"
+    import { goto } from "$app/navigation"
     import { onMount } from "svelte"
     import SuccessDialog from "../../../../lib/Components/Dialogs/SuccessDialog.svelte"
     import Dialog from "../../../../lib/Components/Dialogs/ErrorDialog.svelte"
@@ -60,12 +61,11 @@
             })
 
             setCookie("token", response.token, 15)
-            setCookie("userId", response.userId, 15)
             setCookie("userName", response.userName, 15)
             setCookie("userDisplayName", response.userDisplayName, 15)
             localStorage.setItem("userImage", response.profileImage)
-            location.href = "/quacks/main"
             //redirect to main page
+            goto("/quacks/main")
         }
 
         submitButton.removeEventListener(

@@ -5,20 +5,24 @@
     import { API } from "../../../lib/env"
     import GreenLoader from "../../../lib/Components/GreenLoader.svelte"
     import { getCookie } from "../../../lib/getCookie"
+    import { checkCookie } from "../../../lib/checkCookie"
+    import { browser } from "$app/environment"
+    onMount(() => {
+        if (browser) {
+            checkCookie()
+        }
+    })
 
-    let profileId =
+    let profileName =
         $page.url.href.split("/")[$page.url.href.split("/").length - 1]
 
     const getUserInfo = async () => {
-        let response = await fetch(
-            `${API}/users/profile/${getCookie("userId")}/${profileId}`,
-            {
-                headers: {
-                    authorization: getCookie("token").trim(),
-                    "Content-Type": "application/json",
-                },
+        let response = await fetch(`${API}/users/profile/${profileName}`, {
+            headers: {
+                authorization: getCookie("token").trim(),
+                "Content-Type": "application/json",
             },
-        )
+        })
 
         response = await response.json()
 

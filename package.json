@@ -21,6 +21,6 @@
 	},
 	"dependencies": {
 		"@sveltejs/vite-plugin-svelte": "^3.0.2",
-		"sweetalert2": "^11.6.13"
+		"sweetalert2": "^11.10.7"
 	}
 }
