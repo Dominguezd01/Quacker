@@ -6,15 +6,137 @@
     import requackGreen from "$lib/assets/requackGreen.svg"
     import comment from "$lib/assets/comment.svg"
     export let commentInfo
-    let imgLike,
-        imgRequack,
-        isLike,
-        isRepost,
-        likeCount,
-        repostCount,
-        handleLike,
-        handleRequack
+
+    let imgLike, greenLikeCounter, imgRequack
+    let likeCount = commentInfo._count.comment_like
+    let isLike = commentInfo.comment_like
+    let isRepost = commentInfo.comment_requack
+    let repostCount = commentInfo._count.comment_requack
     console.log(commentInfo)
+
+    const handleLike = async () => {
+        if (isLike) {
+            await disLikeQuack()
+            return
+        }
+        await likeQuack()
+    }
+
+    const handleRequack = async () => {
+        if (isRepost) {
+            await disRequack()
+            return
+        }
+        await requack()
+    }
+
+    const likeQuack = async () => {
+        isLike = true
+        likeCount++
+        /**
+        let options = {
+            method: "POST",
+            headers: {
+                authorization: getCookie("token").trim(),
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                userId: getCookie("userId"),
+                quackId: quackInfo.quack_id,
+            }),
+        }
+
+        let response = await fetch(`${API}/quacks/quack/like`, options)
+        response = await response.json()
+
+        if (response.status !== 200) {
+            imgLike.src = likePlain
+            isLike = false
+            likeCount -= 1
+        }
+        */
+    }
+
+    const disLikeQuack = async () => {
+        isLike = false
+        likeCount -= 1
+        /**
+        let options = {
+            method: "DELETE",
+            headers: {
+                authorization: getCookie("token").trim(),
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                userId: getCookie("userId"),
+                quackId: quackInfo.quack_id,
+            }),
+        }
+
+        let response = await fetch(`${API}/quacks/quack/dislike`, options)
+        response = await response.json()
+
+        if (response.status !== 200) {
+            isLike = true
+            likeCount--
+        }
+        */
+    }
+
+    const requack = async () => {
+        isRepost = true
+        repostCount += 1
+        /**
+         
+        let options = {
+            method: "POST",
+            headers: {
+                authorization: getCookie("token").trim(),
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                userId: getCookie("userId"),
+                quackId: quackInfo.quack_id,
+            }),
+        }
+
+        let response = await fetch(`${API}/quacks/quack/requack`, options)
+        response = await response.json()
+     
+        if (response.status !== 200) {
+            // imgRequack.src = requackPlain
+            isRepost = false
+            repostCount -= 1
+        }
+            */
+    }
+
+    const disRequack = async () => {
+        isRepost = false
+        repostCount -= 1
+        /**
+        let options = {
+            method: "DELETE",
+            headers: {
+                authorization: getCookie("token").trim(),
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                userId: getCookie("userId"),
+                quackId: quackInfo.quack_id,
+            }),
+        }
+
+        let response = await fetch(`${API}/quacks/quack/deleteRequack`, options)
+        response = await response.json()
+
+        if (response.status !== 200) {
+            //re.src = likePlain
+            isRepost = true
+            repostCount -= 1
+        }
+        */
+    }
 </script>
 
 <article>
@@ -120,7 +242,8 @@
                     <img src={comment} class="w-5" alt="" />
                 </button>
                 <p>
-                    {commentInfo._count.quack_comments}
+                    {commentInfo._count
+                        .comments_comment_comments_comment_comment_idTocomments}
                 </p>
             </div>
         </div>
