@@ -1,13 +1,17 @@
 <script>
     import { onMount } from "svelte"
     import { checkCookie } from "../../../../lib/checkCookie.js"
-    import { API } from "../../../../lib/env.js"
+    //import { API } from "../../../../lib/env.js"
     import { browser } from "$app/environment"
     import Quack from "../../../../lib/Components/Quacks/Quack.svelte"
     import GreenLoader from "../../../../lib/Components/GreenLoader.svelte"
     import { getCookie } from "../../../../lib/getCookie.js"
     import Aside from "../../../../lib/Components/Aside.svelte"
     import CreateComment from "../../../../lib/Components/Comments/CreateComment.svelte"
+    import { env } from "$env/dynamic/public"
+    import { comment } from "postcss"
+    import Comment from "../../../../lib/Components/Comments/Comment.svelte"
+    const API = env.PUBLIC_API
     onMount(async () => {
         if (browser) {
             checkCookie()
@@ -54,23 +58,29 @@
         )
         response = await response.json()
         console.log(response)
-        return response
+        return response.comments
     }
 </script>
 
 <main>
     <Aside></Aside>
-    {#await getQuack()}
-        <GreenLoader></GreenLoader>
-    {:then quack}
-        <div class="flex justify-items-start flex-col gap-2 h-[100vh]">
+    <div class="flex justify-items-start flex-col gap-2 h-[100vh]">
+        {#await getQuack()}
+            <GreenLoader></GreenLoader>
+        {:then quack}
             <Quack quackInfo={quack.quack}></Quack>
             <CreateComment quackId={quack.quack.quack_id}></CreateComment>
-        </div>
-    {/await}
-    {#await getComments()}
-        <GreenLoader></GreenLoader>
-    {/await}
+        {/await}
+        {#await getComments()}
+            <GreenLoader></GreenLoader>
+        {:then comments}
+            <div class="flex flex-col">
+                {#each comments as comment}
+                    <Comment commentInfo={comment}></Comment>
+                {/each}
+            </div>
+        {/await}
+    </div>
     <div class="border-cyan-400 border-solid border-2 w-max h-max aside2">
         <nav>ASIDE</nav>
     </div>
