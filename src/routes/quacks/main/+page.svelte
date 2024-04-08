@@ -6,6 +6,7 @@
     import { onMount } from "svelte"
     import { checkCookie } from "../../../lib/checkCookie"
     import { browser } from "$app/environment"
+
     onMount(() => {
         if (browser) {
             checkCookie()

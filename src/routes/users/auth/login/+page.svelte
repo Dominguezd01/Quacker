@@ -1,7 +1,6 @@
 <script>
     import { getCookie } from "../../../../lib/getCookie.js"
     import { setCookie } from "../../../../lib/setCookie.js"
-    const API = env.PUBLIC_API
     import { goto } from "$app/navigation"
     import { onMount } from "svelte"
     import SuccessDialog from "../../../../lib/Components/Dialogs/SuccessDialog.svelte"
@@ -10,6 +9,8 @@
     import GreenLoader from "../../../../lib/Components/GreenLoader.svelte"
     import InputLogin from "../../../../lib/Components/InputLogin.svelte"
     import ErrorDialog from "../../../../lib/Components/Dialogs/ErrorDialog.svelte"
+    import { env } from "$env/dynamic/public"
+    const API = env.PUBLIC_API
     let form,
         identifierValue,
         passwordValue,

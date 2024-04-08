@@ -1,8 +1,9 @@
 <script>
     export let userInfo
-    const API = env.PUBLIC_API
     import { getCookie } from "../../getCookie.js"
     import { onMount } from "svelte"
+    import { env } from "$env/dynamic/public"
+    const API = env.PUBLIC_API
     let followed, divButtons
     onMount(() => {
         followed = userInfo.followed

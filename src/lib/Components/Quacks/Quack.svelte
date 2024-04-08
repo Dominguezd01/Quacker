@@ -1,6 +1,5 @@
 <script>
     export let quackInfo
-    const API = env.PUBLIC_API
     import { getCookie } from "../../getCookie.js"
     import { getImage } from "../../getImage.js"
     import defaultProfilePicture from "$lib/assets/defaultProfilePicture.jpg"
@@ -10,6 +9,8 @@
     import requackGreen from "$lib/assets/requackGreen.svg"
     import comment from "$lib/assets/comment.svg"
     import { onMount } from "svelte"
+    import { env } from "$env/dynamic/public"
+    const API = env.PUBLIC_API
     let imgLike, greenLikeCounter, imgRequack
     let likeCount = quackInfo._count.user_quack_like
     let isLike = quackInfo.user_quack_like.length > 0

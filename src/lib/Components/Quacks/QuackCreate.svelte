@@ -1,5 +1,6 @@
 <script>
     import { getCookie } from "../../getCookie"
+    import { env } from "$env/dynamic/public"
     const API = env.PUBLIC_API
     let quackContent
     const handleSubmit = async () => {

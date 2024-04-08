@@ -1,10 +1,11 @@
 <script>
     import GreenLoader from "../../Components/GreenLoader.svelte"
     import Quack from "./Quack.svelte"
-    const API = env.PUBLIC_API
     import { getCookie } from "../../getCookie.js"
     import QuackCreate from "./QuackCreate.svelte"
     import { onMount } from "svelte"
+    import { env } from "$env/dynamic/public"
+    const API = env.PUBLIC_API
 
     onMount(() => {
         if (getCookie("token") == "") {

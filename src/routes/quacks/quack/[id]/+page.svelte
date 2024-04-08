@@ -8,7 +8,6 @@
     import Aside from "../../../../lib/Components/Aside.svelte"
     import CreateComment from "../../../../lib/Components/Comments/CreateComment.svelte"
     import { env } from "$env/dynamic/public"
-    import { comment } from "postcss"
     import Comment from "../../../../lib/Components/Comments/Comment.svelte"
     const API = env.PUBLIC_API
     onMount(async () => {

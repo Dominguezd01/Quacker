@@ -1,4 +1,5 @@
 <script>
+    import { env } from "$env/dynamic/public"
     import { getImage } from "../../getImage.js"
     import likePlain from "$lib/assets/like.svg"
     import likeGreen from "$lib/assets/likeGreen.svg"

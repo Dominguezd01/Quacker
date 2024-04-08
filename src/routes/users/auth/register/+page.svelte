@@ -1,12 +1,13 @@
 <script>
     import Dialog from "../../../../lib/Components/Dialogs/ErrorDialog.svelte"
-    const API = env.PUBLIC_API
     import image1 from "../../../../lib/assets/Avatars/1.svg"
     import image2 from "../../../../lib/assets/Avatars/2.svg"
     import image3 from "../../../../lib/assets/Avatars/3.svg"
     import image4 from "../../../../lib/assets/Avatars/4.svg"
     import image5 from "../../../../lib/assets/Avatars/5.svg"
     import image6 from "../../../../lib/assets/Avatars/6.svg"
+    import { env } from "$env/dynamic/public"
+    const API = env.PUBLIC_API
     let form,
         emailValue,
         userNameValue,

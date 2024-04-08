@@ -1,6 +1,7 @@
 <script>
-    const API = env.PUBLIC_API
+    import { env } from "$env/dynamic/public"
     import { getCookie } from "../getCookie"
+    const API = env.PUBLIC_API
 
     let searchTerm
     const handleSearch = async () => {
