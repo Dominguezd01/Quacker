@@ -1,6 +1,4 @@
 <script>
-    import "./app.css"
-
     import "$lib/app.css"
 </script>
 

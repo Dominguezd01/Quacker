@@ -1,11 +1,21 @@
 <script>
     import { env } from "$env/dynamic/public"
     import { getCookie } from "../getCookie"
+    import GreenLoader from "./GreenLoader.svelte"
+    import SearchResult from "./SearchResult/SearchResult.svelte"
+    import { goto } from "$app/navigation"
+    import { onMount } from "svelte"
     const API = env.PUBLIC_API
 
     let searchTerm
+
     const handleSearch = async () => {
-        console.log(searchTerm)
+        localStorage.setItem("searchTerm", searchTerm)
+        goto(`/search`)
+        new GreenLoader({
+            target: document.querySelector("#quacksDiv"),
+            hydrate: true,
+        })
         let options = {
             method: "POST",
             headers: {
@@ -21,7 +31,15 @@
 
         response = await response.json()
 
-        console.log(response)
+        if (response.status === 200) {
+            new SearchResult({
+                target: document.querySelector("#quacksDiv"),
+                hydrate: true,
+                props: {
+                    searchResultsInfo: response.searchResult,
+                },
+            })
+        }
     }
 </script>
 

@@ -18,7 +18,6 @@
         prevoiusTarget
 
     const handleSelectImage = (e) => {
-        console.log(e)
         if (prevoiusTarget !== undefined) {
             prevoiusTarget.classList.remove("selectedItem")
         }
@@ -66,7 +65,6 @@
                 },
             })
         }
-        console.log(body)
     }
 </script>
 

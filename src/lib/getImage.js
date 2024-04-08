@@ -15,6 +15,5 @@ const images = {
 }
 
 export function getImage(imageName) {
-    console.log(imageName)
     return images[imageName] != null ? images[imageName] : image1
 }

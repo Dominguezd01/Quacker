@@ -35,7 +35,6 @@
             options,
         )
         response = await response.json()
-        console.log(response)
         return response
     }
 
@@ -55,7 +54,6 @@
             options,
         )
         response = await response.json()
-        console.log(response)
         return response.comments
     }
 </script>

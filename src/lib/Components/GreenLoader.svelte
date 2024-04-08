@@ -5,6 +5,7 @@
         display: block;
         width: 80px;
         height: 80px;
+        margin: 0px auto;
     }
     .lds-dual-ring:after {
         content: " ";

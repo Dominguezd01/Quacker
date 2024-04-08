@@ -74,7 +74,6 @@
             preventClickWhenFetching,
             false,
         )
-        console.log(response)
     }
 
     const preventClickWhenFetching = (e) => {

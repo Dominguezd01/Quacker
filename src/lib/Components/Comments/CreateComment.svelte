@@ -9,7 +9,7 @@
         let content = textArea.value.trim()
 
         if (content === "" || content.length > 500) {
-            console.log("TOO LONG")
+            alert("TOO LONG")
             return
         }
 
@@ -29,8 +29,6 @@
 
         let response = await fetch(`${API}/comments/comment/create`, options)
         response = await response.json()
-
-        console.log(response)
     }
 </script>
 

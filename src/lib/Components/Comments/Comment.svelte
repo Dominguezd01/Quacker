@@ -13,7 +13,6 @@
     let isLike = commentInfo.comment_like
     let isRepost = commentInfo.comment_requack
     let repostCount = commentInfo._count.comment_requack
-    console.log(commentInfo)
 
     const handleLike = async () => {
         if (isLike) {

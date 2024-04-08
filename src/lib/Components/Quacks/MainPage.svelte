@@ -6,7 +6,7 @@
     import { onMount } from "svelte"
     import { env } from "$env/dynamic/public"
     const API = env.PUBLIC_API
-
+    let quackContainer
     onMount(() => {
         if (getCookie("token") == "") {
             location.href = "/users/auth/login"
@@ -25,21 +25,32 @@
         }
         let response = await fetch(`${API}/quacks/main`, options)
         response = await response.json()
-        console.log(response.quacks)
         if (response.status == 403) location.href = "/users/auth/login"
         return response.quacks
     }
 </script>
 
 <div class="grid items-center gap-2 w-[100%]">
-    <QuackCreate></QuackCreate>
     {#await getMainQuacks()}
         <div class="grid items-center justify-center mt-6">
             <GreenLoader></GreenLoader>
         </div>
     {:then quacks}
-        {#each quacks as quack}
-            <Quack quackInfo={quack}></Quack>
-        {/each}
+        <div class="flex flex-col-reverse quacks">
+            <div bind:this={quackContainer} id="quacksDiv">
+                {#each quacks as quack}
+                    <Quack quackInfo={quack}></Quack>
+                {/each}
+            </div>
+            <QuackCreate mainDiv={quackContainer}></QuackCreate>
+        </div>
     {/await}
 </div>
+
+<style>
+    @media (min-width: 375px) and (max-width: 1900px) {
+        .quacks {
+            width: 100%;
+        }
+    }
+</style>

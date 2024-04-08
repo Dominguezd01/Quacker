@@ -28,8 +28,7 @@
         response = await response.json()
 
         if (response.status == 401) location.href = "/users/auth/login"
-        console.log(response)
-
+        
         return response.userInfo
     }
 </script>

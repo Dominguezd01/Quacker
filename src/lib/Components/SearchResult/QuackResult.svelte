@@ -2,7 +2,6 @@
     export let quackInfo
     import { getCookie } from "../../getCookie.js"
     import { getImage } from "../../getImage.js"
-    import defaultProfilePicture from "$lib/assets/defaultProfilePicture.jpg"
     import likePlain from "$lib/assets/like.svg"
     import likeGreen from "$lib/assets/likeGreen.svg"
     import requackPlain from "$lib/assets/requack.svg"
@@ -141,23 +140,30 @@
         <!--
         Image and names container
     -->
-        <a href="/quacks/quack/{quackInfo.quack_id}">
+        <a
+            href="/quacks/quack/{quackInfo.quack_id}"
+            class="flex flex-col gap-4"
+        >
             <div class="grid items-center gap-4">
                 <!-- svelte-ignore a11y-click-events-have-key-events -->
                 <div class="flex gap-7" role="button" tabindex="10px">
-                    <img
-                        src={getImage(
-                            quackInfo.user_quack[0].users.profile_picture,
-                        )}
-                        alt="User"
-                        class="w-16 border-solid border-2 bg-white rounded-[20%]"
-                    />
+                    <a
+                        href={`/users/${quackInfo.user_quack[0].users.user_name}`}
+                    >
+                        <img
+                            src={getImage(
+                                quackInfo.user_quack[0].users.profile_picture,
+                            )}
+                            alt="User"
+                            class="w-16 border-solid border-2 bg-white rounded-[20%]"
+                        />
+                    </a>
                     <div class="grid items-center">
-                        <p class="text-sm/[0px] mb-[-22px]">
+                        <p class="text-3xl font-bold mb-[-10px]">
                             {quackInfo.user_quack[0].users.display_name}
                         </p>
-                        <p class="text-xs/[0px]">
-                            {quackInfo.user_quack[0].users.user_name}
+                        <p class="text-2xl">
+                            @{quackInfo.user_quack[0].users.user_name}
                         </p>
                     </div>
                 </div>
@@ -165,7 +171,7 @@
             <!--
         Quack content
     -->
-            <div class="ml-24">
+            <div class="ml-24 text-3xl">
                 {quackInfo.content}
             </div>
         </a>
@@ -184,7 +190,7 @@
                             bind:this={imgLike}
                             src={likeGreen}
                             alt="Like button"
-                            class="w-5 buttons"
+                            class="w-5"
                         />
                     </button>
                     <p class="text-green-500">
@@ -198,7 +204,7 @@
                             bind:this={imgLike}
                             src={likePlain}
                             alt="Like button"
-                            class="w-5 buttons"
+                            class="w-5"
                         />
                     </button>
                     <p>{likeCount}</p>
@@ -215,7 +221,7 @@
                             bind:this={imgRequack}
                             src={requackGreen}
                             alt="Like button"
-                            class="w-5 buttons"
+                            class="w-5"
                         />
                     </button>
                     <p class="text-green-500">{repostCount}</p>
@@ -226,7 +232,7 @@
                         <img
                             src={requackPlain}
                             alt="Like button"
-                            class="w-5 buttons"
+                            class="w-5"
                             bind:this={imgRequack}
                         />
                     </button>
@@ -236,7 +242,7 @@
 
             <div class="flex gap-2">
                 <button>
-                    <img src={comment} class="w-5 buttons" alt="" />
+                    <img src={comment} class="w-5" alt="" />
                 </button>
                 <p>
                     {quackInfo._count.quack_comments}
@@ -248,8 +254,21 @@
 
 <style>
     article {
+        overflow: hidden;
         animation: ping;
         animation-duration: 1s;
+    }
+
+    @keyframes show {
+        from {
+            width: 20%;
+            height: 1%;
+        }
+
+        to {
+            width: 100%;
+            height: 100%;
+        }
     }
 
     @keyframes ping {
@@ -262,10 +281,7 @@
             transform: scale(1);
         }
     }
-
-    @media (min-width: 100px) and (max-width: 1900px) {
-        .buttons {
-            width: 30px;
-        }
+    .animate-ping {
+        animation: ping 0.5s cubic-bezier(0, 0, 0.2, 1) infinite;
     }
 </style>

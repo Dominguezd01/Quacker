@@ -6,6 +6,7 @@
     import { onMount } from "svelte"
     import { checkCookie } from "../../../lib/checkCookie"
     import { browser } from "$app/environment"
+    import BottomBar from "../../../lib/Components/BottomBar.svelte"
 
     onMount(() => {
         if (browser) {
@@ -16,7 +17,10 @@
 
 <main class="w-max h-max">
     <div class="w-max h-max aside items-center grid gap-8 mt-2">
-        <div class="flex place-items-center justify-center gap-5">
+        <div
+            id="duckerContainer"
+            class="flex place-items-center justify-center gap-5"
+        >
             <img src={duckGreen} alt="Ducker logo" class="w-[50px]" />
             <p>Ducker</p>
         </div>
@@ -29,6 +33,7 @@
         <RigthAside></RigthAside>
     </div>
 </main>
+<BottomBar></BottomBar>
 
 <style>
     main {
@@ -50,5 +55,17 @@
     .aside2 {
         grid-area: "aside2";
         width: 100%;
+    }
+
+    @media (min-width: 100px) and (max-width: 1900px) {
+        #duckerContainer,
+        .aside2,
+        .aside {
+            display: none;
+        }
+
+        main {
+            display: flex;
+        }
     }
 </style>

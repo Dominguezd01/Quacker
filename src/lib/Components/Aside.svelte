@@ -1,6 +1,6 @@
 <script>
     import homeIcon from "$lib/assets/homeIcon.svg"
-    import notificationIcon from "$lib/assets/notificationIcon.svg"
+    import notificationIcon from "$lib/assets/messages.svg"
     import profileIcon from "$lib/assets/profileIcon.svg"
     import { onMount } from "svelte"
     import { getCookie } from "../getCookie"
@@ -11,8 +11,11 @@
     })
 </script>
 
-<div class="flex justify-center flex-col place-items-center h-[80vh] gap-32">
-    <nav class="flex items-center flex-col gap-2">
+<div
+    id="main"
+    class="flex justify-center flex-col place-items-center h-[80vh] gap-28"
+>
+    <nav class="flex items-center flex-col gap-6">
         <a href="/quacks/main" class="flex gap-1 items-center">
             <img
                 src={homeIcon}
@@ -22,24 +25,35 @@
             />
             <p class="font-extrabold text-[18px]">Home</p>
         </a>
-        <hr class="w-[75%] opacity-50" />
+
         <a href="/notifications" class="flex gap-1 items-center">
-            <img src={notificationIcon} alt="Notification icon" width="60px" />
+            <img src={notificationIcon} alt="Notification icon" width="50px" />
             <p class="font-extrabold text-[18px]">Notifications</p>
         </a>
-
-        <hr class="w-[75%] opacity-50" />
     </nav>
 
     <a href="/profile" class="flex gap-3 items-center">
         <img
             src={getImage(profilePic)}
             alt="User icon"
-            width="40px"
+            width="60px"
             class="ml-[-60px]"
         />
-        <p class="font-extrabold text-[18px] mr-[-15px]">
-            {getCookie("userName")}
-        </p>
+        <div class="flex flex-col">
+            <p class="font-extrabold text-2xl mr-[-15px]">
+                {getCookie("userDisplayName")}
+            </p>
+            <p class=" text-xl mr-[-15px]">
+                @{getCookie("userDisplayName")}
+            </p>
+        </div>
     </a>
 </div>
+
+<style>
+    @media (min-width: 100px) and (max-width: 1900px) {
+        #main {
+            display: none;
+        }
+    }
+</style>
