@@ -156,7 +156,7 @@
                         <p class="text-sm/[0px] mb-[-22px]">
                             {quackInfo.user_quack[0].users.display_name}
                         </p>
-                        <p class="text-xs/[0px]">
+                        <p class="text-xs/[0px] content">
                             {quackInfo.user_quack[0].users.user_name}
                         </p>
                     </div>
@@ -166,7 +166,7 @@
         Quack content
     -->
             <div class="ml-24">
-                {quackInfo.content}
+                <p>{quackInfo.content}</p>
             </div>
         </a>
         <!--
@@ -265,7 +265,28 @@
 
     @media (min-width: 100px) and (max-width: 1900px) {
         .buttons {
-            width: 30px;
+            width: 90px;
+        }
+        .content {
+            font-size: 1em;
+        }
+    }
+
+    @media (min-width: 100px) and (max-width: 300px) {
+        .buttons {
+            width: 90px;
+            height: 30px;
+        }
+    }
+    @media (min-width: 375) and (max-width: 400px) {
+        .buttons {
+            width: 40px;
+        }
+    }
+
+    @media (min-width: 300px) and (max-width: 1900px) {
+        .buttons {
+            width: 40px;
         }
     }
 </style>

@@ -82,12 +82,14 @@
 </script>
 
 <div bind:this={divDialog}></div>
-<div class="grid items-center justify-center m-14">
+<div class="grid items-center justify-center m-14 login">
     <form
         on:submit|preventDefault={handleSubmit}
         class="flex flex-col items-center justify-center"
     >
-        <div class="grid items-center grid-cols-2 gap-4 text-center m-4">
+        <div
+            class="grid items-center grid-cols-2 gap-4 text-center m-4 inputContainer"
+        >
             <div class="grid items-center">
                 <label for="email">Username or Email</label>
                 <input
@@ -119,3 +121,12 @@
         </div>
     </form>
 </div>
+
+<style>
+    @media (min-width: 300px) and (max-width: 1900px) {
+        .inputContainer {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+</style>
