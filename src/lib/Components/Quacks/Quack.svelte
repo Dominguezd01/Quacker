@@ -1,6 +1,6 @@
 <script>
     export let quackInfo
-    import { API } from "../../env.js"
+    const API = env.PUBLIC_API
     import { getCookie } from "../../getCookie.js"
     import { getImage } from "../../getImage.js"
     import defaultProfilePicture from "$lib/assets/defaultProfilePicture.jpg"

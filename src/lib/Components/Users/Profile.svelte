@@ -1,6 +1,6 @@
 <script>
     export let userInfo
-    import { API } from "../../env.js"
+    const API = env.PUBLIC_API
     import { getCookie } from "../../getCookie.js"
     import { onMount } from "svelte"
     let followed, divButtons
@@ -9,7 +9,7 @@
     })
     const sendFollow = async () => {
         followed = true
-        
+
         let options = {
             method: "POST",
             headers: {

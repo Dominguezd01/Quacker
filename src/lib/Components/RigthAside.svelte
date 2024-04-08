@@ -1,5 +1,5 @@
 <script>
-    import { API } from "../env"
+    const API = env.PUBLIC_API
     import { getCookie } from "../getCookie"
 
     let searchTerm

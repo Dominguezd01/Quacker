@@ -1,6 +1,6 @@
 <script>
     import { getCookie } from "../../getCookie"
-    import { API } from "../../env.js"
+    const API = env.PUBLIC_API
     let quackContent
     const handleSubmit = async () => {
         console.log(quackContent.value.trim())

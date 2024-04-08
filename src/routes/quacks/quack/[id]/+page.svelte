@@ -1,7 +1,6 @@
 <script>
     import { onMount } from "svelte"
     import { checkCookie } from "../../../../lib/checkCookie.js"
-    //import { API } from "../../../../lib/env.js"
     import { browser } from "$app/environment"
     import Quack from "../../../../lib/Components/Quacks/Quack.svelte"
     import GreenLoader from "../../../../lib/Components/GreenLoader.svelte"

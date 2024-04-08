@@ -1,6 +1,6 @@
 <script>
     import Dialog from "../../../../lib/Components/Dialogs/ErrorDialog.svelte"
-    import { API } from "../../../../lib/env.js"
+    const API = env.PUBLIC_API
     import image1 from "../../../../lib/assets/Avatars/1.svg"
     import image2 from "../../../../lib/assets/Avatars/2.svg"
     import image3 from "../../../../lib/assets/Avatars/3.svg"

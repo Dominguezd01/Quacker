@@ -1,7 +1,7 @@
 <script>
     import { getCookie } from "../../../../lib/getCookie.js"
     import { setCookie } from "../../../../lib/setCookie.js"
-    import { API } from "../../../../lib/env.js"
+    const API = env.PUBLIC_API
     import { goto } from "$app/navigation"
     import { onMount } from "svelte"
     import SuccessDialog from "../../../../lib/Components/Dialogs/SuccessDialog.svelte"

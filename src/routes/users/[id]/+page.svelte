@@ -2,7 +2,7 @@
     import { page } from "$app/stores"
     import { onMount } from "svelte"
     import Profile from "../../../lib/Components/Users/Profile.svelte"
-    import { API } from "../../../lib/env"
+    const API = env.PUBLIC_API
     import GreenLoader from "../../../lib/Components/GreenLoader.svelte"
     import { getCookie } from "../../../lib/getCookie"
     import { checkCookie } from "../../../lib/checkCookie"
