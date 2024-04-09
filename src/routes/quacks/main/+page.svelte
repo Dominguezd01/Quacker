@@ -8,6 +8,7 @@
     import { browser } from "$app/environment"
     import BottomBar from "../../../lib/Components/BottomBar.svelte"
 
+    let main
     onMount(() => {
         if (browser) {
             checkCookie()
@@ -15,7 +16,7 @@
     })
 </script>
 
-<main class="w-max h-max">
+<main class="w-max h-max" bind:this={main}>
     <div class="w-max h-max aside items-center grid gap-8 mt-2">
         <div
             id="duckerContainer"

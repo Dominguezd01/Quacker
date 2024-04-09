@@ -51,13 +51,13 @@
 </script>
 
 <div
-    class="grid items-center text-center border-2 border-solid border-green-500 p-2 gap-3 rounded-md"
+    class="grid items-center text-center border-2 border-solid border-quacker p-2 gap-3 rounded-md"
 >
     <div class="text-3xl font-bold advise">What is happening?</div>
     <form class="grid gap-5" on:submit|preventDefault={handleSubmit}>
         <textarea
             maxlength="500"
-            class="w-[100%] h-[160px] resize-none text-center text-base rounded-md bg-[#1a1a1a] border-solid border-green-500 border-2 p-1"
+            class="w-[100%] h-[160px] resize-none text-center text-base rounded-md bg-[#1a1a1a] border-solid border-quacker border-2 p-1"
             placeholder="Tell us your thoughts"
             bind:this={quackContent}
         >
@@ -66,7 +66,7 @@
             <input
                 type="submit"
                 value="QUACK!!!"
-                class="bg-green-500 text-white rounded-md p-4 submitBtn"
+                class="bg-quacker text-white rounded-md p-4 submitBtn"
             />
         </div>
     </form>

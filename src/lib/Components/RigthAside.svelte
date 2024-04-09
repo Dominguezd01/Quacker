@@ -43,21 +43,25 @@
     }
 </script>
 
-<div>
+<div class="main">
     <form
         on:submit|preventDefault={handleSearch}
         class="flex flex-col justify-center items-center gap-2 p-2"
     >
         <input
             type="text"
-            class="w-[450px] h-[70px] border-2 border-green-500 bg-black text-center"
+            class="w-[450px] h-[70px] border-2 border-quacker bg-black text-center"
             placeholder="Search"
             bind:value={searchTerm}
         />
-        <input
-            type="submit"
-            value="Search"
-            class="bg-green-500 p-2 rounded-md"
-        />
+        <input type="submit" value="Search" class="bg-quacker p-2 rounded-md" />
     </form>
 </div>
+
+<style>
+    @media (min-width: 300px) and (max-width: 1900px) {
+        .main {
+            display: none;
+        }
+    }
+</style>

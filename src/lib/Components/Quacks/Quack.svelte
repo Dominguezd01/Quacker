@@ -136,7 +136,7 @@
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-<article>
+<article class="w-[100%]">
     <div class="grid items-center gap-4 border-solid border-2 p-4 rounded-md">
         <!--
         Image and names container
@@ -150,7 +150,7 @@
                             quackInfo.user_quack[0].users.profile_picture,
                         )}
                         alt="User"
-                        class="w-16 border-solid border-2 bg-white rounded-[20%]"
+                        class="w-16 border-solid border-2 bg-white rounded-[20%] userImg"
                     />
                     <div class="grid items-center">
                         <p class="text-sm/[0px] mb-[-22px]">
@@ -172,7 +172,7 @@
         <!--
         Button container
     -->
-        <div class="flex flex-row ml-24 gap-28">
+        <div class="flex flex-row ml-24 gap-28 buttonContainer">
             <!--
             Like Button
         -->
@@ -187,7 +187,7 @@
                             class="w-5 buttons"
                         />
                     </button>
-                    <p class="text-green-500">
+                    <p class="text-quacker">
                         {likeCount}
                     </p>
                 </div>
@@ -218,7 +218,7 @@
                             class="w-5 buttons"
                         />
                     </button>
-                    <p class="text-green-500">{repostCount}</p>
+                    <p class="text-quacker">{repostCount}</p>
                 </div>
             {:else}
                 <div class="flex gap-2" on:click={handleRequack}>
@@ -263,30 +263,12 @@
         }
     }
 
-    @media (min-width: 100px) and (max-width: 1900px) {
-        .buttons {
-            width: 90px;
-        }
-        .content {
-            font-size: 1em;
-        }
-    }
-
-    @media (min-width: 100px) and (max-width: 300px) {
-        .buttons {
-            width: 90px;
-            height: 30px;
-        }
-    }
-    @media (min-width: 375) and (max-width: 400px) {
-        .buttons {
-            width: 40px;
-        }
-    }
-
     @media (min-width: 300px) and (max-width: 1900px) {
-        .buttons {
-            width: 40px;
+        .buttonContainer {
+            gap: 80px;
+        }
+        .userImg {
+            width: 60px;
         }
     }
 </style>

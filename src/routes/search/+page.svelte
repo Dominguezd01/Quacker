@@ -48,6 +48,11 @@
     }
 
     const onLoad = async () => {
+        if (!localStorage.getItem("searchTerm")) {
+            let response = {}
+            response.noResults = true
+            return response
+        }
         let options = {
             method: "POST",
             headers: {
@@ -69,19 +74,15 @@
     }
 </script>
 
-<main class="p-2">
-    <div class="w-max h-max aside items-center grid gap-8 mt-2">
-        <div class="flex place-items-center justify-center gap-5">
-            <img src={duckGreen} alt="Ducker logo" class="w-[50px]" />
-            <p>Ducker</p>
-        </div>
+<main class="flex flex-row items-start justify-start">
+    <div class="h-max aside items-center grid gap-8 mt-2">
         <Aside />
     </div>
 
     <div class="p-4 w-[100%] flex flex-col gap-5">
         <form
             on:submit|preventDefault={handleSearch}
-            class="w-[100%] flex justify-start gap-2"
+            class="w-[100%] flex justify-start gap-2 form"
         >
             <input
                 type="text"
@@ -91,10 +92,10 @@
             <input
                 type="submit"
                 value="Search!"
-                class="bg-green-500 p-2 rounded-md"
+                class="bg-quacker p-2 rounded-md"
             />
         </form>
-        <div id="searchResults">
+        <div id="searchResults" class="w-[50%]">
             {#await onLoad()}
                 <GreenLoader></GreenLoader>
             {:then response}
@@ -105,20 +106,38 @@
 </main>
 
 <style>
+    @media (min-width: 300px) and (max-width: 420px) {
+        main {
+            display: grid;
+            gap: 0em;
+            margin-left: -10px;
+        }
+    }
+    @media (min-width: 420px) and (max-width: 620px) {
+        main {
+            display: grid;
+            gap: 10px;
+            margin-left: 10px;
+        }
+    }
+    @media (min-width: 300px) and (max-width: 820px) {
+        .form {
+            width: 100%;
+        }
+    }
+    @media (min-width: 1900px) and (max-width: 820px) {
+    }
     main {
         display: grid;
         grid-template-areas: "aside main";
-        grid-template-columns: 2fr 10fr;
-        width: 100%;
-        height: 100%;
+        grid-template-columns: 1fr 5fr;
+        gap: 1em;
     }
 
     .aside {
         grid-area: "aside";
-        width: 100%;
     }
     main {
         grid-area: "main";
-        width: 100%;
     }
 </style>

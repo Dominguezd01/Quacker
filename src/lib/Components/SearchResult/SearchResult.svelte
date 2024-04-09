@@ -4,10 +4,10 @@
     import SearchQuack from "./SearchQuack.svelte"
 </script>
 
-<div flex flex-col-reverse>
+<div class="flex flex-col w-[150%]">
     {#if searchResultsInfo.noResults}
-        <div>
-            <p>We couldnt find nothing ;C</p>
+        <div class="">
+            <p class="text-xl font-bold">We couldnt find nothing ;C</p>
         </div>
     {:else}
         {#if searchResultsInfo.users.length !== 0}

@@ -7,7 +7,7 @@
     import requackGreen from "$lib/assets/requackGreen.svg"
     import comment from "$lib/assets/comment.svg"
     export let commentInfo
-
+    console.log(commentInfo)
     let imgLike, greenLikeCounter, imgRequack
     let likeCount = commentInfo._count.comment_like
     let isLike = commentInfo.comment_like
@@ -153,7 +153,7 @@
                             commentInfo.user_comments[0].users.profile_picture,
                         )}
                         alt="User"
-                        class="w-16 border-solid border-2 bg-white rounded-[20%]"
+                        class="w-16 border-solid border-2 bg-white rounded-[20%] userImg"
                     />
                     <div class="grid items-center">
                         <p class="text-sm/[0px] mb-[-22px]">
@@ -175,7 +175,7 @@
         <!--
         Button container
     -->
-        <div class="flex flex-row ml-24 gap-28">
+        <div class="flex flex-row ml-24 gap-28 buttonContainer">
             <!--
             Like Button
         -->
@@ -190,7 +190,7 @@
                             class="w-5"
                         />
                     </button>
-                    <p class="text-green-500">
+                    <p class="text-quacker">
                         {likeCount}
                     </p>
                 </div>
@@ -221,7 +221,7 @@
                             class="w-5"
                         />
                     </button>
-                    <p class="text-green-500">{repostCount}</p>
+                    <p class="text-quacker">{repostCount}</p>
                 </div>
             {:else}
                 <div class="flex gap-2" on:click={handleRequack}>
@@ -249,3 +249,14 @@
         </div>
     </div>
 </article>
+
+<style>
+    @media (min-width: 300px) and (max-width: 1900px) {
+        .buttonContainer {
+            gap: 80px;
+        }
+        .userImg {
+            width: 60px;
+        }
+    }
+</style>

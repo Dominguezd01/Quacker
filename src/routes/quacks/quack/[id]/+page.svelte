@@ -6,9 +6,11 @@
     import GreenLoader from "../../../../lib/Components/GreenLoader.svelte"
     import { getCookie } from "../../../../lib/getCookie.js"
     import Aside from "../../../../lib/Components/Aside.svelte"
+    import RigthAside from "../../../../lib/Components/RigthAside.svelte"
     import CreateComment from "../../../../lib/Components/Comments/CreateComment.svelte"
     import { env } from "$env/dynamic/public"
     import Comment from "../../../../lib/Components/Comments/Comment.svelte"
+    import BottomBar from "../../../../lib/Components/BottomBar.svelte"
     const API = env.PUBLIC_API
     onMount(async () => {
         if (browser) {
@@ -60,7 +62,7 @@
 
 <main>
     <Aside></Aside>
-    <div class="flex justify-items-start flex-col gap-2 h-[100vh]">
+    <div class="flex flex-col gap-2 h-[100vh] w-[100%]">
         {#await getQuack()}
             <GreenLoader></GreenLoader>
         {:then quack}
@@ -70,37 +72,29 @@
         {#await getComments()}
             <GreenLoader></GreenLoader>
         {:then comments}
-            <div class="flex flex-col">
+            <div class="flex flex-col" id="commentsContainer">
                 {#each comments as comment}
                     <Comment commentInfo={comment}></Comment>
                 {/each}
             </div>
         {/await}
     </div>
-    <div class="border-cyan-400 border-solid border-2 w-max h-max aside2">
-        <nav>ASIDE</nav>
-    </div>
+    <RigthAside></RigthAside>
 </main>
+<BottomBar></BottomBar>
 
 <style>
     main {
         display: grid;
-        grid-template-areas: "aside main aside2";
-        grid-template-columns: 4fr 10fr 2fr;
+
+        grid-template-columns: 3fr 9fr 3fr;
         width: 100%;
         height: 100%;
     }
 
-    .aside {
-        grid-area: "aside";
-        width: 100%;
-    }
-    .main {
-        grid-area: "main";
-        width: 100%;
-    }
-    .aside2 {
-        grid-area: "aside2";
-        width: 100%;
+    @media (min-width: 300px) and (max-width: 1900px) {
+        main {
+            display: flex;
+        }
     }
 </style>

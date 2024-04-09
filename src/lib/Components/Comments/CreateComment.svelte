@@ -1,6 +1,7 @@
 <script>
     import { env } from "$env/dynamic/public"
     import { getCookie } from "../../getCookie"
+    import Comment from "./Comment.svelte"
     const API = env.PUBLIC_API
 
     export let quackId
@@ -29,10 +30,22 @@
 
         let response = await fetch(`${API}/comments/comment/create`, options)
         response = await response.json()
+
+        if (response.status === 201) {
+            console.log(document.querySelector("#commentsContainer"))
+            new Comment({
+                target: document.querySelector("#commentsContainer"),
+                anchor: document.querySelector("#commentsContainer").firstChild,
+                props: {
+                    commentInfo: response.comment,
+                },
+                hydrate: false,
+            })
+        }
     }
 </script>
 
-<div>
+<div class="mainDiv">
     <form
         on:submit|preventDefault={handleSubmit}
         class="grid w-[100%] items-center gap-2"
@@ -45,13 +58,10 @@
         <input
             type="submit"
             value="COMMENT!!"
-            class="bg-green-500 p-4 border rounded-md border-none"
+            class="bg-quacker p-4 border rounded-md border-none"
         />
     </form>
 </div>
 
 <style>
-    textarea {
-        field-sizing: content;
-    }
 </style>

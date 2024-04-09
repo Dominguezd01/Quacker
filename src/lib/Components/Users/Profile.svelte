@@ -50,14 +50,14 @@
 <div bind:this={divButtons}>
     {#if !followed}
         <button
-            class="bg-green-500 p-20 w-[60px] h-[30px] text-center grid place-items-center"
+            class="bg-lime-500 p-20 w-[60px] h-[30px] text-center grid place-items-center"
             on:click={sendFollow}
         >
             FOLLOW
         </button>
     {:else}
         <button
-            class="bg-green-500 p-20 w-[60px] h-[30px] text-center grid place-items-center"
+            class="bg-quacker p-20 w-[60px] h-[30px] text-center grid place-items-center"
             on:click={sendUnFollow}
         >
             UNFOLLOW

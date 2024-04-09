@@ -135,8 +135,10 @@
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-<article>
-    <div class="grid items-center gap-4 border-solid border-2 p-4 rounded-md">
+<article class="quack">
+    <div
+        class="grid items-center gap-4 border-solid border-2 p-4 rounded-md mainDiv w-[100%]"
+    >
         <!--
         Image and names container
     -->
@@ -146,7 +148,7 @@
         >
             <div class="grid items-center gap-4">
                 <!-- svelte-ignore a11y-click-events-have-key-events -->
-                <div class="flex gap-7" role="button" tabindex="10px">
+                <div class="flex gap-7 items-center" role="button">
                     <a
                         href={`/users/${quackInfo.user_quack[0].users.user_name}`}
                     >
@@ -155,14 +157,14 @@
                                 quackInfo.user_quack[0].users.profile_picture,
                             )}
                             alt="User"
-                            class="w-16 border-solid border-2 bg-white rounded-[20%]"
+                            class="w-16 border-solid border-2 bg-white rounded-[20%] imgProfile"
                         />
                     </a>
                     <div class="grid items-center">
-                        <p class="text-3xl font-bold mb-[-10px]">
+                        <p class="text-3xl font-bold mb-[-10px] displayName">
                             {quackInfo.user_quack[0].users.display_name}
                         </p>
-                        <p class="text-2xl">
+                        <p class="text-2xl userName">
                             @{quackInfo.user_quack[0].users.user_name}
                         </p>
                     </div>
@@ -171,14 +173,14 @@
             <!--
         Quack content
     -->
-            <div class="ml-24 text-3xl">
-                {quackInfo.content}
+            <div class="ml-24 text-3xl content">
+                <p class="text-3xl contentP">{quackInfo.content}</p>
             </div>
         </a>
         <!--
         Button container
     -->
-        <div class="flex flex-row ml-24 gap-28">
+        <div class="flex flex-row ml-24 gap-28 buttonContainer">
             <!--
             Like Button
         -->
@@ -190,10 +192,10 @@
                             bind:this={imgLike}
                             src={likeGreen}
                             alt="Like button"
-                            class="w-5"
+                            class="w-5 buttons"
                         />
                     </button>
-                    <p class="text-green-500">
+                    <p class="text-quacker">
                         {likeCount}
                     </p>
                 </div>
@@ -204,7 +206,7 @@
                             bind:this={imgLike}
                             src={likePlain}
                             alt="Like button"
-                            class="w-5"
+                            class="w-5 buttons"
                         />
                     </button>
                     <p>{likeCount}</p>
@@ -221,10 +223,10 @@
                             bind:this={imgRequack}
                             src={requackGreen}
                             alt="Like button"
-                            class="w-5"
+                            class="w-5 buttons"
                         />
                     </button>
-                    <p class="text-green-500">{repostCount}</p>
+                    <p class="text-quacker">{repostCount}</p>
                 </div>
             {:else}
                 <div class="flex gap-2" on:click={handleRequack}>
@@ -232,7 +234,7 @@
                         <img
                             src={requackPlain}
                             alt="Like button"
-                            class="w-5"
+                            class="w-5 buttons"
                             bind:this={imgRequack}
                         />
                     </button>
@@ -242,7 +244,7 @@
 
             <div class="flex gap-2">
                 <button>
-                    <img src={comment} class="w-5" alt="" />
+                    <img src={comment} class="w-5 buttons" alt="" />
                 </button>
                 <p>
                     {quackInfo._count.quack_comments}
@@ -255,8 +257,8 @@
 <style>
     article {
         overflow: hidden;
-        animation: ping;
         animation-duration: 1s;
+        width: 100%;
     }
 
     @keyframes show {
@@ -283,5 +285,38 @@
     }
     .animate-ping {
         animation: ping 0.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+    }
+    @media (min-width: 375px) and (max-width: 820px) {
+        article {
+            width: 90vw;
+        }
+        .imgProfile {
+            width: 45px;
+        }
+        .displayName {
+            font-size: medium;
+        }
+        .userName {
+            font-size: small;
+        }
+        .content {
+            margin-left: 0px;
+        }
+        .contentP {
+            font-size: small;
+            line-height: 16px;
+            text-wrap: wrap;
+        }
+        .buttonContainer {
+            margin-left: 0px;
+            gap: 100px;
+        }
+        .buttons {
+        }
+    }
+    @media (min-width: 1900px) {
+        .quack {
+            width: 60vw;
+        }
     }
 </style>

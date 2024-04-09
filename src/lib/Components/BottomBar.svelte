@@ -1,19 +1,35 @@
+<script>
+    import homeIcon from "$lib/assets/homeIcon.svg"
+    import searchIcon from "$lib/assets/search.svg"
+    import notificationIcon from "$lib/assets/messages.svg"
+    import profileIcon from "$lib/assets/profileIcon.svg"
+    import { getCookie } from "../getCookie"
+</script>
+
 <div class="navbar">
-    <a href="#home" class="active">Home</a>
-    <a href="#news">News</a>
-    <a href="#contact">Contact</a>
+    <a href="/quacks/main" class="w-16"
+        ><img src={homeIcon} alt="Home icon" /></a
+    >
+    <a href="/search" class="w-16"><img src={searchIcon} alt="" /></a>
+    <a href="/users/{getCookie('userName')}" class="w-16"
+        ><img src={profileIcon} alt="" /></a
+    >
 </div>
 
 <style>
     /* Place the navbar at the bottom of the page, and make it stick */
     .navbar {
-        background-color: #333;
+        background-color: black;
+        border-radius: 15px;
+        border: solid 1px #22c55e;
         overflow: hidden;
         position: fixed;
-        bottom: 0;
-        width: 100%;
+        bottom: 1%;
+        width: 50%;
+        gap: 6px;
         display: flex;
         justify-content: center;
+        transform: translateX(40%);
     }
 
     /* Style the links inside the navigation bar */
@@ -25,18 +41,6 @@
         padding: 14px 16px;
         text-decoration: none;
         font-size: 17px;
-    }
-
-    /* Change the color of links on hover */
-    .navbar a:hover {
-        background-color: #ddd;
-        color: black;
-    }
-
-    /* Add a color to the active/current link */
-    .navbar a.active {
-        background-color: #04aa6d;
-        color: white;
     }
 
     @media (min-width: 1900px) {

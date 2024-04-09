@@ -16,7 +16,7 @@
 
     let profileName =
         $page.url.href.split("/")[$page.url.href.split("/").length - 1]
-
+    console.log(profileName)
     const getUserInfo = async () => {
         let response = await fetch(`${API}/users/profile/${profileName}`, {
             headers: {
@@ -28,7 +28,7 @@
         response = await response.json()
 
         if (response.status == 401) location.href = "/users/auth/login"
-        
+
         return response.userInfo
     }
 </script>

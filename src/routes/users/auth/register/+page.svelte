@@ -81,7 +81,7 @@
                     type="text"
                     id="email"
                     bind:value={emailValue}
-                    class="w-72 text-center rounded-lg h-10 hover:border-solid hover:border-2 border-green-500 transition 0.25s"
+                    class="w-72 text-center rounded-lg h-10 hover:border-solid hover:border-2 border-quacker transition 0.25s"
                 />
             </div>
             <div class="grid items-center">
@@ -90,7 +90,7 @@
                     type="text"
                     id="userName"
                     bind:value={userNameValue}
-                    class="w-72 text-center rounded-lg h-10 hover:border-solid hover:border-2 border-green-500 transition 0.25s"
+                    class="w-72 text-center rounded-lg h-10 hover:border-solid hover:border-2 border-quacker transition 0.25s"
                 />
             </div>
             <div class="grid items-center">
@@ -99,7 +99,7 @@
                     type="password"
                     id="password"
                     bind:value={passwordValue}
-                    class="w-72 text-center rounded-lg h-10 hover:border-solid hover:border-2 border-green-500 transition 0.25s"
+                    class="w-72 text-center rounded-lg h-10 hover:border-solid hover:border-2 border-quacker transition 0.25s"
                 />
             </div>
             <div class="grid items-center">
@@ -108,7 +108,7 @@
                     type="text"
                     id="displayName"
                     bind:value={displayNameValue}
-                    class="w-72 text-center rounded-lg h-10 hover:border-solid hover:border-2 border-green-500 transition 0.25s"
+                    class="w-72 text-center rounded-lg h-10 hover:border-solid hover:border-2 border-quacker transition 0.25s"
                 />
             </div>
         </div>

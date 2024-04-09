@@ -37,7 +37,7 @@
         </div>
     {:then quacks}
         <div class="flex flex-col-reverse quacks">
-            <div bind:this={quackContainer} id="quacksDiv">
+            <div bind:this={quackContainer} id="quacksDiv" class="w-[100%]">
                 {#each quacks as quack}
                     <Quack quackInfo={quack}></Quack>
                 {/each}
