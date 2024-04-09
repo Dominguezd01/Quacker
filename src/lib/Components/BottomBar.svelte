@@ -29,7 +29,7 @@
         gap: 6px;
         display: flex;
         justify-content: center;
-        transform: translateX(40%);
+        transform: translateX(50%);
     }
 
     /* Style the links inside the navigation bar */
