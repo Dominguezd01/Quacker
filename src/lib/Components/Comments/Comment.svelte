@@ -6,6 +6,7 @@
     import requackPlain from "$lib/assets/requack.svg"
     import requackGreen from "$lib/assets/requackGreen.svg"
     import comment from "$lib/assets/comment.svg"
+    import { getCookie } from "../../getCookie.js"
     export let commentInfo
     console.log(commentInfo)
     let imgLike, greenLikeCounter, imgRequack
@@ -13,7 +14,7 @@
     let isLike = commentInfo.comment_like
     let isRepost = commentInfo.comment_requack
     let repostCount = commentInfo._count.comment_requack
-
+    const API = env.PUBLIC_API
     const handleLike = async () => {
         if (isLike) {
             await disLikeQuack()
@@ -33,7 +34,7 @@
     const likeQuack = async () => {
         isLike = true
         likeCount++
-        /**
+
         let options = {
             method: "POST",
             headers: {
@@ -41,12 +42,11 @@
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                userId: getCookie("userId"),
-                quackId: quackInfo.quack_id,
+                commentId: commentInfo.comment_id,
             }),
         }
 
-        let response = await fetch(`${API}/quacks/quack/like`, options)
+        let response = await fetch(`${API}/comments/comment/like`, options)
         response = await response.json()
 
         if (response.status !== 200) {
@@ -54,13 +54,12 @@
             isLike = false
             likeCount -= 1
         }
-        */
     }
 
     const disLikeQuack = async () => {
         isLike = false
         likeCount -= 1
-        /**
+
         let options = {
             method: "DELETE",
             headers: {
@@ -68,19 +67,17 @@
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                userId: getCookie("userId"),
-                quackId: quackInfo.quack_id,
+                commentId: commentInfo.comment_id,
             }),
         }
 
-        let response = await fetch(`${API}/quacks/quack/dislike`, options)
+        let response = await fetch(`${API}/comments/comment/dislike`, options)
         response = await response.json()
 
         if (response.status !== 200) {
             isLike = true
             likeCount--
         }
-        */
     }
 
     const requack = async () => {

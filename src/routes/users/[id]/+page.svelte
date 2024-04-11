@@ -6,6 +6,8 @@
     import { getCookie } from "../../../lib/getCookie"
     import { checkCookie } from "../../../lib/checkCookie"
     import { browser } from "$app/environment"
+    import Aside from "../../../lib/Components/Aside.svelte"
+    import RigthAside from "../../../lib/Components/RigthAside.svelte"
     import { env } from "$env/dynamic/public"
     const API = env.PUBLIC_API
     onMount(() => {
@@ -33,8 +35,31 @@
     }
 </script>
 
-{#await getUserInfo()}
-    <GreenLoader></GreenLoader>
-{:then userInfo}
-    <Profile {userInfo}></Profile>
-{/await}
+<main>
+    <div class="border-2">
+        <Aside></Aside>
+    </div>
+    {#await getUserInfo()}
+        <GreenLoader></GreenLoader>
+    {:then userInfo}
+        <div class="border-2">
+            <Profile {userInfo}></Profile>
+        </div>
+    {/await}
+    <RigthAside></RigthAside>
+</main>
+
+<style>
+    main {
+        display: grid;
+        grid-template-columns: 3fr 9fr 3fr;
+        width: 100%;
+        height: 100%;
+    }
+
+    @media (min-width: 300px) and (max-width: 1900px) {
+        main {
+            display: flex;
+        }
+    }
+</style>
