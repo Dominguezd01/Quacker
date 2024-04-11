@@ -32,7 +32,6 @@
         response = await response.json()
 
         if (response.status === 201) {
-            console.log(document.querySelector("#commentsContainer"))
             new Comment({
                 target: document.querySelector("#commentsContainer"),
                 anchor: document.querySelector("#commentsContainer").firstChild,

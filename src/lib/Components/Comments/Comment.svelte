@@ -8,7 +8,6 @@
     import comment from "$lib/assets/comment.svg"
     import { getCookie } from "../../getCookie.js"
     export let commentInfo
-    console.log(commentInfo)
     let imgLike, greenLikeCounter, imgRequack
     let likeCount = commentInfo._count.comment_like
     let isLike = commentInfo.comment_like
