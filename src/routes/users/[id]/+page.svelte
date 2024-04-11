@@ -18,7 +18,6 @@
 
     let profileName =
         $page.url.href.split("/")[$page.url.href.split("/").length - 1]
-    console.log(profileName)
     const getUserInfo = async () => {
         let response = await fetch(`${API}/users/profile/${profileName}`, {
             headers: {
