@@ -83,8 +83,7 @@
     const requack = async () => {
         isRepost = true
         repostCount += 1
-        /**
-         
+
         let options = {
             method: "POST",
             headers: {
@@ -93,25 +92,24 @@
             },
             body: JSON.stringify({
                 userId: getCookie("userId"),
-                quackId: quackInfo.quack_id,
+                commentId: commentInfo.comment_id,
             }),
         }
 
-        let response = await fetch(`${API}/quacks/quack/requack`, options)
+        let response = await fetch(`${API}/comments/comment/requack`, options)
         response = await response.json()
-     
+
         if (response.status !== 200) {
             // imgRequack.src = requackPlain
             isRepost = false
             repostCount -= 1
         }
-            */
     }
 
     const disRequack = async () => {
         isRepost = false
         repostCount -= 1
-        /**
+
         let options = {
             method: "DELETE",
             headers: {
@@ -120,11 +118,14 @@
             },
             body: JSON.stringify({
                 userId: getCookie("userId"),
-                quackId: quackInfo.quack_id,
+                commentId: commentInfo.comment_id,
             }),
         }
 
-        let response = await fetch(`${API}/quacks/quack/deleteRequack`, options)
+        let response = await fetch(
+            `${API}/comments/comment/deleteRequack`,
+            options,
+        )
         response = await response.json()
 
         if (response.status !== 200) {
@@ -132,7 +133,6 @@
             isRepost = true
             repostCount -= 1
         }
-        */
     }
 </script>
 
