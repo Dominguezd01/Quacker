@@ -132,6 +132,19 @@
             repostCount -= 1
         }
     }
+
+    const getContent = (content) => {
+        if (content.split(" ").length !== 1) return content
+        console.log(content)
+        if (content.length < 100) return content
+        console.log("content is 1")
+        let contentArray = []
+        for (let i = 0; i < content.length; i++) {
+            contentArray.push(content[i])
+        }
+
+        return contentArray.join(" ")
+    }
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -166,7 +179,7 @@
         Quack content
     -->
             <div class="ml-24">
-                <p>{quackInfo.content}</p>
+                <p class="content">{quackInfo.content}</p>
             </div>
         </a>
         <!--
@@ -270,5 +283,10 @@
         .userImg {
             width: 60px;
         }
+    }
+
+    .content {
+        line-break: strict;
+        word-break: normal;
     }
 </style>

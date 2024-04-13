@@ -6,17 +6,20 @@
     import { browser } from "$app/environment"
     import Aside from "../Aside.svelte"
     import MainPage from "./MainPage.svelte"
+    import ContentTooLong from "../Dialogs/ContentTooLong.svelte"
+    import { onMount } from "svelte"
     const API = env.PUBLIC_API
-    let quackContent
+    let quackContent, mainDivQuackCreate
     let divQuacks
+    let submitButton
     if (browser) divQuacks = document.getElementById("#quacksDiv")
+
     const handleSubmit = async () => {
         let contentQuack = quackContent.value.trim()
 
-        if (contentQuack.trim() == "" || contentQuack.length > 500) {
-            alert("TOOO LONG")
-            return
+        if (contentQuack.trim() == "" || contentQuack.length > 135) {
         }
+
         let bodyContent = {
             content: contentQuack,
             userId: getCookie("userId"),
@@ -46,24 +49,39 @@
                 hydrate: false,
             })
         }
-        //send parentPost as null to indicate is a quack by itself
+
+        if (response.status === 413) {
+            new ContentTooLong({
+                target: mainDivQuackCreate,
+                hydrate: false,
+            })
+        }
     }
 </script>
 
 <div
     class="grid items-center text-center border-2 border-solid border-quacker p-2 gap-3 rounded-md"
+    bind:this={mainDivQuackCreate}
 >
     <div class="text-3xl font-bold advise">What is happening?</div>
     <form class="grid gap-5" on:submit|preventDefault={handleSubmit}>
         <textarea
-            maxlength="500"
-            class="w-[100%] h-[160px] resize-none text-center text-base rounded-md bg-[#1a1a1a] border-solid border-quacker border-2 p-1"
+            maxlength="135"
+            class="w-[100%] h-[160px] resize-none rounded-md bg-[#1a1a1a] border-solid border-quacker border-2"
             placeholder="Tell us your thoughts"
             bind:this={quackContent}
+            on:keydown={() => {
+                if (quackContent.value.length > 135) {
+                    submitButton.hidden = true
+                    return
+                }
+                submitButton.hidden = false
+            }}
         >
         </textarea>
         <div class="flex flex-row-reverse">
             <input
+                bind:this={submitButton}
                 type="submit"
                 value="QUACK!!!"
                 class="bg-quacker text-white rounded-md p-4 submitBtn"
