@@ -17,14 +17,7 @@
 </script>
 
 <main class="w-max h-max" bind:this={main}>
-    <div class="w-max h-max aside items-center grid gap-8 mt-2">
-        <div
-            id="duckerContainer"
-            class="flex place-items-center justify-center gap-5"
-        >
-            <img src={duckGreen} alt="Ducker logo" class="w-[50px]" />
-            <p>Ducker</p>
-        </div>
+    <div class="w-max h-max aside">
         <Aside />
     </div>
     <div class="w-max h-max main mt-1">
@@ -40,7 +33,7 @@
     main {
         display: grid;
         grid-template-areas: "aside main aside2";
-        grid-template-columns: 5fr 10fr;
+        grid-template-columns: 5fr 10fr 5fr;
         width: 100%;
         height: 100%;
     }
@@ -59,7 +52,6 @@
     }
 
     @media (min-width: 100px) and (max-width: 1900px) {
-        #duckerContainer,
         .aside2,
         .aside {
             display: none;

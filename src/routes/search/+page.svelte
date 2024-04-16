@@ -75,7 +75,7 @@
 </script>
 
 <main class="flex flex-row items-start justify-start">
-    <div class="h-max aside items-center grid gap-8 mt-2">
+    <div>
         <Aside />
     </div>
 
@@ -130,7 +130,7 @@
     main {
         display: grid;
         grid-template-areas: "aside main";
-        grid-template-columns: 1fr 5fr;
+        grid-template-columns: 5fr 10fr;
         gap: 1em;
     }
 

@@ -43,7 +43,7 @@
     }
 </script>
 
-<div class="main">
+<div class="main ml-2">
     <form
         on:submit|preventDefault={handleSearch}
         class="flex flex-col justify-center items-center gap-2 p-2"

@@ -8,6 +8,7 @@
     import { browser } from "$app/environment"
     import Aside from "../../../lib/Components/Aside.svelte"
     import RigthAside from "../../../lib/Components/RigthAside.svelte"
+    import BottomBar from "../../../lib/Components/BottomBar.svelte"
     import { env } from "$env/dynamic/public"
     const API = env.PUBLIC_API
     onMount(() => {
@@ -18,10 +19,11 @@
 
     let profileName =
         $page.url.href.split("/")[$page.url.href.split("/").length - 1]
+
     const getUserInfo = async () => {
         let response = await fetch(`${API}/users/profile/${profileName}`, {
             headers: {
-                authorization: getCookie("token").trim(),
+                authorization: getCookie("token"),
                 "Content-Type": "application/json",
             },
         })
@@ -35,7 +37,7 @@
 </script>
 
 <main>
-    <div class="border-2">
+    <div class="w-full asideContainer">
         <Aside></Aside>
     </div>
     {#await getUserInfo()}
@@ -45,7 +47,10 @@
             <Profile {userInfo}></Profile>
         </div>
     {/await}
-    <RigthAside></RigthAside>
+    <div class="block asideContainer">
+        <RigthAside></RigthAside>
+    </div>
+    <BottomBar></BottomBar>
 </main>
 
 <style>
@@ -59,6 +64,12 @@
     @media (min-width: 300px) and (max-width: 1900px) {
         main {
             display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .asideContainer {
+            display: none;
         }
     }
 </style>
