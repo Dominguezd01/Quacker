@@ -1,6 +1,6 @@
 <script>
     import homeIcon from "$lib/assets/homeIcon.svg"
-    import notificationIcon from "$lib/assets/messages.svg"
+    import searchIcon from "$lib/assets/search.svg"
     import profileIcon from "$lib/assets/profileIcon.svg"
     import { onMount } from "svelte"
     import { getCookie } from "../getCookie"
@@ -27,8 +27,13 @@
         </a>
 
         <a href="/notifications" class="flex gap-1 items-center">
-            <img src={notificationIcon} alt="Notification icon" width="50px" />
-            <p class="font-extrabold text-[18px]">Notifications</p>
+            <img
+                src={searchIcon}
+                alt="Search icon"
+                width="50px"
+                class="ml-[-65px] mr-2"
+            />
+            <p class="font-extrabold text-[18px]">Search</p>
         </a>
     </nav>
 
