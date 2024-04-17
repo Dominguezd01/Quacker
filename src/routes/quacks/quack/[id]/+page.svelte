@@ -61,7 +61,9 @@
 </script>
 
 <main>
-    <Aside></Aside>
+    <div>
+        <Aside></Aside>
+    </div>
     <div class="flex flex-col gap-2 h-[100vh] w-[100%]">
         {#await getQuack()}
             <GreenLoader></GreenLoader>
@@ -79,14 +81,15 @@
             </div>
         {/await}
     </div>
-    <RigthAside></RigthAside>
+    <div>
+        <RigthAside></RigthAside>
+    </div>
 </main>
 <BottomBar></BottomBar>
 
 <style>
     main {
         display: grid;
-
         grid-template-columns: 3fr 9fr 3fr;
         width: 100%;
         height: 100%;

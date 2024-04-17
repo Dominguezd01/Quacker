@@ -50,7 +50,6 @@
     }
 
     const getQuacksUser = async () => {
-        console.log(getCookie("token").trim())
         let response = await fetch(`${API}/quacks/getUserQuacks`, {
             method: "POST",
             headers: {

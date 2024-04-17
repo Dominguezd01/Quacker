@@ -2,6 +2,8 @@
     import homeIcon from "$lib/assets/homeIcon.svg"
     import searchIcon from "$lib/assets/search.svg"
     import profileIcon from "$lib/assets/profileIcon.svg"
+    import messagesIcon from "$lib/assets/messages.svg"
+    //messageIcon
     import { onMount } from "svelte"
     import { getCookie } from "../getCookie"
     import { getImage } from "../getImage"
@@ -26,7 +28,7 @@
             <p class="font-extrabold text-[18px]">Home</p>
         </a>
 
-        <a href="/notifications" class="flex gap-1 items-center">
+        <a href="/search" class="flex gap-1 items-center">
             <img
                 src={searchIcon}
                 alt="Search icon"
@@ -34,6 +36,25 @@
                 class="ml-[-65px] mr-2"
             />
             <p class="font-extrabold text-[18px]">Search</p>
+        </a>
+        <a href="/profile" class="flex gap-1 items-center">
+            <img
+                src={profileIcon}
+                alt="Search icon"
+                width="50px"
+                class="ml-[-65px] mr-2"
+            />
+            <p class="font-extrabold text-[18px]">Profile</p>
+        </a>
+
+        <a href="/groups" class="flex gap-1 items-center">
+            <img
+                src={messagesIcon}
+                alt="Search icon"
+                width="50px"
+                class="ml-[-65px] mr-2"
+            />
+            <p class="font-extrabold text-[18px]">Groups</p>
         </a>
     </nav>
 
@@ -44,7 +65,7 @@
                 {getCookie("userDisplayName")}
             </p>
             <p class=" text-xl mr-[-15px]">
-                @{getCookie("userDisplayName")}
+                @{getCookie("userName")}
             </p>
         </div>
     </a>

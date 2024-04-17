@@ -18,11 +18,9 @@
         prevoiusTarget
 
     const handleSelectImage = (e) => {
-        /**
         if (prevoiusTarget !== undefined) {
             prevoiusTarget.classList.remove("selectedItem")
         }
-        */
         let target = e.target
         target.classList.add("selectedItem")
         profileImage = e.target.id
@@ -181,3 +179,12 @@
         </div>
     </form>
 </div>
+
+<style>
+    .selectedItem {
+        border: solid 2px #22c55e;
+        scale: 1.7;
+        border-radius: 10px;
+        transform: rotate(2deg);
+    }
+</style>

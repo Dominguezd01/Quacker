@@ -1,7 +1,7 @@
 <script>
-    import { env } from "$env/dynamic/public"
     import { getCookie } from "../../getCookie"
     import Comment from "./Comment.svelte"
+    import { env } from "$env/dynamic/public"
     const API = env.PUBLIC_API
 
     export let quackId
@@ -16,7 +16,6 @@
 
         let bodyContent = {
             content: content,
-            userId: getCookie("userId"),
             quackId: quackId,
         }
         let options = {

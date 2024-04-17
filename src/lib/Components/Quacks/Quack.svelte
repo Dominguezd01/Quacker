@@ -9,6 +9,7 @@
     import requackGreen from "$lib/assets/requackGreen.svg"
     import comment from "$lib/assets/comment.svg"
     import { env } from "$env/dynamic/public"
+    import Dropdown from "../../Dropdown.svelte"
     const API = env.PUBLIC_API
     let imgLike, greenLikeCounter, imgRequack
     let likeCount = quackInfo._count.user_quack_like
@@ -135,9 +136,7 @@
 
     const getContent = (content) => {
         if (content.split(" ").length !== 1) return content
-        console.log(content)
         if (content.length < 100) return content
-        console.log("content is 1")
         let contentArray = []
         for (let i = 0; i < content.length; i++) {
             contentArray.push(content[i])
@@ -149,35 +148,41 @@
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-<article class="w-[100%]">
+<article class="w-[100%]" id={quackInfo.quack_id}>
     <div class="grid items-center gap-4 border-solid border-2 p-4 rounded-md">
         <!--
         Image and names container
     -->
-        <a href="/quacks/quack/{quackInfo.quack_id}">
-            <div class="grid items-center gap-4">
-                <!-- svelte-ignore a11y-click-events-have-key-events -->
-                <div class="flex gap-7" role="button" tabindex="10px">
-                    <img
-                        src={getImage(
-                            quackInfo.user_quack[0].users.profile_picture,
-                        )}
-                        alt="User"
-                        class="w-16 border-solid border-2 bg-white rounded-[20%] userImg"
-                    />
-                    <div class="grid items-center">
-                        <p class="text-sm/[0px] mb-[-22px]">
-                            {quackInfo.user_quack[0].users.display_name}
-                        </p>
-                        <p class="text-xs/[0px] content">
-                            {quackInfo.user_quack[0].users.user_name}
-                        </p>
-                    </div>
+        <div class="grid items-center justify-center grid-rows-1 grid-cols-2">
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
+            <div class="flex gap-7 w-full" role="button" tabindex="10px">
+                <img
+                    src={getImage(
+                        quackInfo.user_quack[0].users.profile_picture,
+                    )}
+                    alt="User"
+                    class="w-16 border-solid border-2 bg-white rounded-[20%] userImg"
+                />
+                <div class="grid items-center">
+                    <p class="text-sm/[0px] mb-[-22px]">
+                        {quackInfo.user_quack[0].users.display_name}
+                    </p>
+                    <p class="text-xs/[0px] content">
+                        {quackInfo.user_quack[0].users.user_name}
+                    </p>
                 </div>
             </div>
-            <!--
+
+            <div class="flex flex-row-reverse gap-0 w-full">
+                {#if quackInfo.isFromUser}
+                    <Dropdown quackId={quackInfo.quack_id}></Dropdown>
+                {/if}
+            </div>
+        </div>
+        <!--
         Quack content
     -->
+        <a href="/quacks/quack/{quackInfo.quack_id}">
             <div class="ml-24">
                 <p class="content">{quackInfo.content}</p>
             </div>
