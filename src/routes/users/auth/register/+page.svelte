@@ -18,9 +18,11 @@
         prevoiusTarget
 
     const handleSelectImage = (e) => {
+        /**
         if (prevoiusTarget !== undefined) {
             prevoiusTarget.classList.remove("selectedItem")
         }
+        */
         let target = e.target
         target.classList.add("selectedItem")
         profileImage = e.target.id
