@@ -62,8 +62,8 @@
         })
 
         response = await response.json()
-
-        if (response.status == 401) location.href = "/users/auth/login"
+        if (response.status === 500) location.href = "/users/auth/login"
+        if (response.status === 401) location.href = "/users/auth/login"
         if (response.status !== 200) location.href = "/quacks/main"
 
         return response.quacks
@@ -81,13 +81,12 @@
 
     <div class="flex flex-col w-[100%] gap-3">
         <div class="flex flex-col w-[90%] gap-10">
-            <!--ESTE DIV JODIDO IMBECIL-->
             <div
                 class="flex flex-row justify-self-start items-center gap-96 buttonNameContainer"
             >
                 <div class="flex flex-row items-start">
                     <img
-                        src={getImage(userInfo.user.image)}
+                        src={getImage(userInfo.user.profile_picture)}
                         alt="User profile"
                         class="w-[128px] imgProfile"
                     />
@@ -104,13 +103,13 @@
                 <div bind:this={divButtons} class="">
                     {#if userInfo.isUser}
                         <a
-                            href="/edit"
+                            href="/users/profile/edit"
                             class="border-2 border-solid border-green-500 p-2 rounded-md text-xl font-bold bg-green-400 editButton"
                         >
                             Edit your profile
                         </a>
                         <a
-                            href="/edit"
+                            href="/users/profile/edit"
                             class="hidden border-2 border-solid border-green-500 p-2 rounded-md text-xl font-bold bg-green-400 editButtonResponsive"
                         >
                             <img
