@@ -37,7 +37,10 @@
             />
             <p class="font-extrabold text-[18px]">Search</p>
         </a>
-        <a href="/profile" class="flex gap-1 items-center">
+        <a
+            href="/users/{getCookie('userName')}"
+            class="flex gap-1 items-center"
+        >
             <img
                 src={profileIcon}
                 alt="Search icon"
