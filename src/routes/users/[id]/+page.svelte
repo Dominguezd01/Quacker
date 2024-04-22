@@ -29,7 +29,7 @@
         })
 
         response = await response.json()
-
+        if (response.status === 500) location.href = "/users/auth/login"
         if (response.status == 401) location.href = "/users/auth/login"
 
         return response.userInfo
