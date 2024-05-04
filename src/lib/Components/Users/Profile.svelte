@@ -165,7 +165,7 @@
                 <GreenLoader></GreenLoader>
             {:then quacks}
                 {#if quacks.length === 0}
-                    <p>This user havent quacked nothing yet</p>
+                    <p>This user have quacked nothing yet</p>
                 {:else}
                     {#each quacks as quack}
                         <Quack quackInfo={quack}></Quack>
