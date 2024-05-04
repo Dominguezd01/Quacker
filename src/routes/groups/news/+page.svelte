@@ -5,10 +5,10 @@
         $page.url.href.split("/")[$page.url.href.split("/").length - 1]
     console.log(roomName)
     import { io } from "socket.io-client"
-    import YourMessage from "$lib/Components/groups/YourMessage.svelte"
+    import YourMessage from "$lib/Components/Groups/YourMessage.svelte"
     import { onDestroy, onMount } from "svelte"
     import { getCookie } from "$lib/getCookie"
-    import Message from "$lib/Components/groups/Message.svelte"
+    import Message from "$lib/Components/Groups/Message.svelte"
     import { env } from "$env/dynamic/public"
     import GreenLoader from "../../../lib/Components/GreenLoader.svelte"
     import RightAside from "$lib/Components/RigthAside.svelte"
