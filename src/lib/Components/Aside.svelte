@@ -7,6 +7,7 @@
     import { onMount } from "svelte"
     import { getCookie } from "../getCookie"
     import { getImage } from "../getImage"
+    import { goto } from "$app/navigation"
     let profilePic
     onMount(() => {
         profilePic = localStorage.getItem("userImage")
@@ -72,6 +73,24 @@
             </p>
         </div>
     </a>
+    <button
+        class="bg-green-500 p-5 rounded-md text-2xl font-bold mt-[-80px]"
+        on:click={() => {
+            let cookies = document.cookie.split(";")
+
+            for (let i = 0; i < cookies.length; i++) {
+                let cookie = cookies[i]
+                let eqPos = cookie.indexOf("=")
+                let name = eqPos > -1 ? cookie.substring(0, eqPos) : cookie
+                document.cookie =
+                    name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/"
+            }
+
+            goto("/users/auth/login")
+        }}
+    >
+        Log out
+    </button>
 </main>
 
 <style>

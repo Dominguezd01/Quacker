@@ -9,6 +9,7 @@
     onMount(() => {
         followed = user.followed
     })
+    console.log(user)
     const sendFollow = async () => {
         followed = true
 
@@ -56,36 +57,47 @@
     <div class="flex flex-col w-[100%] p-1 gap-6 divConBio">
         <div class="flex flex-row w-[100%] imgButtonFollow">
             <div class="flex flex-row">
-                <img
-                    src={getImage(user.profile_picture)}
-                    alt="Users profile"
-                    class="w-24 hidden imgProfileResponsive"
-                />
+                <a href="/users/{user.user_name}">
+                    <img
+                        src={getImage(user.profile_picture)}
+                        alt="Users profile"
+                        class="w-24 hidden imgProfileResponsive"
+                    />
+                </a>
                 <div class="flex flex-col gap-2 w-[100%]">
-                    <p class="font-bold text-2xl">
-                        {user.display_name}
-                    </p>
-                    <p class="text-lg">@{user.user_name}</p>
+                    <a
+                        class="flex flex-col gap-2 w-[100%]"
+                        href="/users/{user.user_name}"
+                    >
+                        <p class="font-bold text-2xl">
+                            {user.display_name}
+                        </p>
+                        <p class="text-lg">@{user.user_name}</p>
+                    </a>
                 </div>
             </div>
-            {#if followed}
-                <div class="flex justify-end w-[100%] h-[100%] btnFollowing">
-                    <button
-                        on:click={sendUnFollow}
-                        class="bg-black pr-1 pl-1 text-center text-lg rounded-sm font-bold border-solid border-2 border-white w-[200px] h-[100%]"
+            {#if !user.isUser}
+                {#if followed}
+                    <div
+                        class="flex justify-end w-[100%] h-[100%] btnFollowing"
                     >
-                        Following!
-                    </button>
-                </div>
-            {:else}
-                <div class="flex justify-end w-[100%] h-[100%] btnFollowed">
-                    <button
-                        on:click={sendFollow}
-                        class="bg-quacker pr-1 pl-1 text-center text-lg rounded-sm font-bold border-solid border-2 border-white w-[200px] h-[100%]"
-                    >
-                        Follow!
-                    </button>
-                </div>
+                        <button
+                            on:click={sendUnFollow}
+                            class="bg-black pr-1 pl-1 text-center text-lg rounded-sm font-bold border-solid border-2 border-white w-[200px] h-[100%]"
+                        >
+                            Following!
+                        </button>
+                    </div>
+                {:else}
+                    <div class="flex justify-end w-[100%] h-[100%] btnFollowed">
+                        <button
+                            on:click={sendFollow}
+                            class="bg-quacker pr-1 pl-1 text-center text-lg rounded-sm font-bold border-solid border-2 border-white w-[200px] h-[100%]"
+                        >
+                            Follow!
+                        </button>
+                    </div>
+                {/if}
             {/if}
         </div>
 
