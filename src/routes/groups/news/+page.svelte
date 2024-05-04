@@ -16,8 +16,9 @@
     import BottomBar from "../../../lib/Components/BottomBar.svelte"
     import ChatBar from "../../../lib/Components/ChatBar.svelte"
     const API = env.PUBLIC_API
+    const PUBLIC_WS = env.PUBLIC_WS
     let msg, messageContainer, btnSend
-    let socket = io(API)
+    let socket = io(PUBLIC_WS)
 
     onMount(() => {
         console.log("Monta")
