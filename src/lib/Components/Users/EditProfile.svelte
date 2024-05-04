@@ -28,7 +28,6 @@
         imageError
 
     const handleSelectImage = (e) => {
-        console.log(prevoiusTarget)
         if (prevoiusTarget !== undefined) {
             document
                 .getElementById(prevoiusTarget)
@@ -54,8 +53,6 @@
         )
 
         response = await response.json()
-
-        console.log(response)
 
         if (response.status !== 200) {
             goto("/quacks/main")

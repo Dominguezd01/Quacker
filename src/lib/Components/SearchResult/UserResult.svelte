@@ -9,7 +9,6 @@
     onMount(() => {
         followed = user.followed
     })
-    console.log(user)
     const sendFollow = async () => {
         followed = true
 

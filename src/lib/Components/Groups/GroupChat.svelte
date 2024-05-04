@@ -16,7 +16,6 @@
     })
 
     onDestroy(() => {
-        console.log("destroy")
         socket.close()
     })
 

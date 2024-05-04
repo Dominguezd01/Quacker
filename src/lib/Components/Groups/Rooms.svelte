@@ -7,13 +7,9 @@
 
     onMount(() => {
         socket.removeAllListeners()
-
-        console.log(previousChat)
     })
 
     const handleClick = () => {
-        console.log(divMessages)
-
         previousChat = new GroupChat({
             hydrate: true,
             target: divMessages,
