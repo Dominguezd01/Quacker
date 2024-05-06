@@ -10,9 +10,11 @@
     import RigthAside from "../../../lib/Components/RigthAside.svelte"
     import BottomBar from "../../../lib/Components/BottomBar.svelte"
     import { env } from "$env/dynamic/public"
+    import { locationCookie } from "../../../../lib/locationCookie"
     const API = env.PUBLIC_API
     onMount(() => {
         if (browser) {
+            locationCookie()
             checkCookie()
         }
     })

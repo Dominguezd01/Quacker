@@ -9,6 +9,8 @@
     import GreenLoader from "../../../../lib/Components/GreenLoader.svelte"
     import InputLogin from "../../../../lib/Components/InputLogin.svelte"
     import ErrorDialog from "../../../../lib/Components/Dialogs/ErrorDialog.svelte"
+
+    import { locationCookie } from "../../../../lib/locationCookie"
     import { env } from "$env/dynamic/public"
     const API = env.PUBLIC_API
     let form,
@@ -18,7 +20,11 @@
         submitButton,
         buttonContainer,
         login = true
-    onMount(() => {})
+    onMount(() => {
+        if (getCookie("token")) {
+            goto("/quacks/main")
+        }
+    })
     const handleSubmit = async () => {
         submitButton.addEventListener("click", preventClickWhenFetching)
         let body = {

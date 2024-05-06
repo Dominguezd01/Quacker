@@ -7,6 +7,14 @@
     import image5 from "../../../../lib/assets/Avatars/5.svg"
     import image6 from "../../../../lib/assets/Avatars/6.svg"
     import { env } from "$env/dynamic/public"
+    import { onMount } from "svelte"
+    import { getCookie } from "../../../../lib/getCookie"
+
+    onMount(() => {
+        if (getCookie("token")) {
+            goto("/quacks/main")
+        }
+    })
     const API = env.PUBLIC_API
     let form,
         emailValue,

@@ -3,7 +3,14 @@
     import BottomBar from "../../../../lib/Components/BottomBar.svelte"
     import RigthAside from "../../../../lib/Components/RigthAside.svelte"
     import EditProfile from "../../../../lib/Components/Users/EditProfile.svelte"
+    import { locationCookie } from "../../../../lib/locationCookie"
     let main
+
+    import { onMount } from "svelte"
+
+    onMount(() => {
+        locationCookie()
+    })
 </script>
 
 <main class="w-max h-max" bind:this={main}>

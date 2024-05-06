@@ -15,20 +15,20 @@
     import Aside from "$lib/Components/Aside.svelte"
     import BottomBar from "../../../lib/Components/BottomBar.svelte"
     import ChatBar from "../../../lib/Components/ChatBar.svelte"
+    import { checkCookie } from "../../../lib/checkCookie"
     const API = env.PUBLIC_API
     const PUBLIC_WS = env.PUBLIC_WS
     let msg, messageContainer, btnSend
     let socket = io(PUBLIC_WS)
 
     onMount(() => {
-        console.log("Monta")
+        checkCookie()
         roomName =
             $page.url.href.split("/")[$page.url.href.split("/").length - 1]
         socket.emit("join-room", roomName)
     })
 
     onDestroy(() => {
-        console.log("destroy")
         socket.close()
     })
     const getEmoji = (room) => {
