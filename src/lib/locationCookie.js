@@ -1,7 +1,8 @@
 import { getCookie } from "./getCookie"
 
 import { goto } from "$app/navigation"
-export default function locationCookie() {
+
+const locationCookie = () => {
     if (getCookie("token") === "") {
         goto("/users/auth/login")
     }
@@ -15,3 +16,5 @@ export default function locationCookie() {
         goto("/users/auth/login")
     }
 }
+
+export default locationCookie

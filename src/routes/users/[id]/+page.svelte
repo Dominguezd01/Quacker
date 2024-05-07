@@ -5,12 +5,13 @@
     import GreenLoader from "../../../lib/Components/GreenLoader.svelte"
     import { getCookie } from "../../../lib/getCookie"
     import { checkCookie } from "../../../lib/checkCookie"
+    import locationCookie from "../../../lib/locationCookie"
     import { browser } from "$app/environment"
     import Aside from "../../../lib/Components/Aside.svelte"
     import RigthAside from "../../../lib/Components/RigthAside.svelte"
     import BottomBar from "../../../lib/Components/BottomBar.svelte"
     import { env } from "$env/dynamic/public"
-    import { locationCookie } from "../../../../lib/locationCookie"
+
     const API = env.PUBLIC_API
     onMount(() => {
         if (browser) {

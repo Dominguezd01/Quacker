@@ -3,13 +3,26 @@
     import BottomBar from "../../../../lib/Components/BottomBar.svelte"
     import RigthAside from "../../../../lib/Components/RigthAside.svelte"
     import EditProfile from "../../../../lib/Components/Users/EditProfile.svelte"
-    import { locationCookie } from "../../../../lib/locationCookie"
-    let main
 
     import { onMount } from "svelte"
 
+    import { goto } from "$app/navigation"
+    import { getCookie } from "../../../../lib/getCookie"
+    let main
+
     onMount(() => {
-        locationCookie()
+        if (getCookie("token") === "") {
+            goto("/users/auth/login")
+        }
+        if (getCookie("userName") === "") {
+            goto("/users/auth/login")
+        }
+        if (getCookie("displayName") === "") {
+            goto("/users/auth/login")
+        }
+        if (getCookie("displayName") === "") {
+            goto("/users/auth/login")
+        }
     })
 </script>
 
