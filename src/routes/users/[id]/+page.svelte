@@ -15,7 +15,6 @@
     const API = env.PUBLIC_API
     onMount(() => {
         if (browser) {
-            locationCookie()
             checkCookie()
         }
     })
