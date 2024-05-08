@@ -8,21 +8,11 @@
 
     import { goto } from "$app/navigation"
     import { getCookie } from "../../../../lib/getCookie"
+    import { checkCookie } from "../../../../lib/getCookie"
     let main
 
     onMount(() => {
-        if (getCookie("token") === "") {
-            goto("/users/auth/login")
-        }
-        if (getCookie("userName") === "") {
-            goto("/users/auth/login")
-        }
-        if (getCookie("displayName") === "") {
-            goto("/users/auth/login")
-        }
-        if (getCookie("displayName") === "") {
-            goto("/users/auth/login")
-        }
+        checkCookie()
     })
 </script>
 
