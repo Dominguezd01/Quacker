@@ -8,7 +8,6 @@
 
     import { goto } from "$app/navigation"
     import { getCookie } from "../../../../lib/getCookie"
-    import { checkCookie } from "../../../../lib/checkCookie"
     let main
 
     onMount(() => {
