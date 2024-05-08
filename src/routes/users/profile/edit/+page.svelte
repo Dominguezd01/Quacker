@@ -12,7 +12,7 @@
     let main
 
     onMount(() => {
-        checkCookie()
+      
     })
 </script>
 
