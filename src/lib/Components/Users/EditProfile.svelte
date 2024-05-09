@@ -1,6 +1,7 @@
 <script>
     import { env } from "$env/dynamic/public"
     import { getCookie } from "../../getCookie"
+    import { setCookie } from "../../setCookie"
     import GreenLoader from "../GreenLoader.svelte"
     import { goto } from "$app/navigation"
     import image1 from "../../assets/Avatars/1.svg"
@@ -97,6 +98,10 @@
         }
 
         if (response.status === 200) {
+            setCookie("token", response.token, 15)
+            setCookie("userName", response.userName, 15)
+            setCookie("userDisplayName", response.userDisplayName, 15)
+            localStorage.setItem("userImage", response.profileImage)
             goto(`/users/${getCookie("userName")}`)
         }
     }
