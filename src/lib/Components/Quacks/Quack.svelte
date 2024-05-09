@@ -168,7 +168,7 @@
                         {quackInfo.user_quack[0].users.display_name}
                     </p>
                     <p class="text-xs/[0px] content">
-                        {quackInfo.user_quack[0].users.user_name}
+                        @{quackInfo.user_quack[0].users.user_name}
                     </p>
                 </div>
             </div>

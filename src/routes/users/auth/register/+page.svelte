@@ -9,6 +9,8 @@
     import { env } from "$env/dynamic/public"
     import { onMount } from "svelte"
     import { getCookie } from "../../../../lib/getCookie"
+    import ErrorDialog from "../../../../lib/Components/Dialogs/ErrorDialog.svelte"
+    import SuccessDialog from "../../../../lib/Components/Dialogs/SuccessDialog.svelte"
 
     onMount(() => {
         if (getCookie("token")) {
@@ -57,7 +59,7 @@
         response = await response.json()
 
         if (response.status == 400) {
-            new Dialog({
+            new ErrorDialog({
                 target: divDialog,
                 props: {
                     title: "Error",
@@ -69,6 +71,22 @@
                 target: divDialog,
                 props: {
                     title: "Error",
+                    content: response.msg,
+                },
+            })
+        } else if (response.status === 400) {
+            new ErrorDialog({
+                target: divDialog,
+                props: {
+                    title: "Error",
+                    content: response.msg,
+                },
+            })
+        } else if (response.status === 200) {
+            new SuccessDialog({
+                target: divDialog,
+                props: {
+                    title: "Success",
                     content: response.msg,
                 },
             })

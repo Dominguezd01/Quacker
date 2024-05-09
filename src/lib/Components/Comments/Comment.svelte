@@ -156,7 +156,7 @@
                             {commentInfo.user_comments[0].users.display_name}
                         </p>
                         <p class="text-xs/[0px]">
-                            {commentInfo.user_comments[0].users.user_name}
+                            @{commentInfo.user_comments[0].users.user_name}
                         </p>
                     </div>
                 </div>
@@ -232,16 +232,6 @@
                     <p>{repostCount}</p>
                 </div>
             {/if}
-
-            <div class="flex gap-2">
-                <button>
-                    <img src={comment} class="w-5" alt="" />
-                </button>
-                <p>
-                    {commentInfo._count
-                        .comments_comment_comments_comment_comment_idTocomments}
-                </p>
-            </div>
         </div>
     </div>
 </article>

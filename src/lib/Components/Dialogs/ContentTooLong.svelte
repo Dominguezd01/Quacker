@@ -27,9 +27,7 @@
         </span>
 
         <div class="flex-1">
-            <strong class="block font-medium"> Changes saved </strong>
-
-            <p class="mt-1 text-sm">Your product changes have been saved.</p>
+            <strong class="block font-medium"> Content too long </strong>
         </div>
 
         <button

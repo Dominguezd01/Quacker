@@ -3,14 +3,7 @@
     import { setCookie } from "../../../../lib/setCookie.js"
     import { goto } from "$app/navigation"
     import { onMount } from "svelte"
-    import SuccessDialog from "../../../../lib/Components/Dialogs/SuccessDialog.svelte"
-    import Dialog from "../../../../lib/Components/Dialogs/ErrorDialog.svelte"
-    import WhiteLoader from "../../../../lib/Components/WhiteLoader.svelte"
-    import GreenLoader from "../../../../lib/Components/GreenLoader.svelte"
-    import InputLogin from "../../../../lib/Components/InputLogin.svelte"
     import ErrorDialog from "../../../../lib/Components/Dialogs/ErrorDialog.svelte"
-
-    import { locationCookie } from "../../../../lib/locationCookie"
     import { env } from "$env/dynamic/public"
     const API = env.PUBLIC_API
     let form,
@@ -59,14 +52,6 @@
             })
             login = true
         } else if (response.status == 200) {
-            new SuccessDialog({
-                target: divDialog,
-                props: {
-                    title: "Sucess",
-                    content: response.msg,
-                },
-            })
-
             setCookie("token", response.token, 15)
             setCookie("userName", response.userName, 15)
             setCookie("userDisplayName", response.userDisplayName, 15)

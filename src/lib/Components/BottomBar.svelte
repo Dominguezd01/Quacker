@@ -3,18 +3,38 @@
     import searchIcon from "$lib/assets/search.svg"
     import notificationIcon from "$lib/assets/messages.svg"
     import profileIcon from "$lib/assets/profileIcon.svg"
+    import logoutIcon from "$lib/assets/logout.svg"
     import { getCookie } from "../getCookie"
+    import { goto } from "$app/navigation"
 </script>
 
 <div class="navbar">
-    <a href="/quacks/main" class="w-14"
+    <a href="/quacks/main" class="w-11"
         ><img src={homeIcon} alt="Home icon" /></a
     >
-    <a href="/search" class="w-14"><img src={searchIcon} alt="" /></a>
-    <a href="/users/{getCookie('userName')}" class="w-14"
+    <a href="/search" class="w-11"><img src={searchIcon} alt="" /></a>
+    <a href="/users/{getCookie('userName')}" class="w-11"
         ><img src={profileIcon} alt="" /></a
     >
-    <a href="/groups" class="w-14"><img src={notificationIcon} alt="" /></a>
+    <a href="/groups" class="w-11"><img src={notificationIcon} alt="" /></a>
+    <button
+        class="w-11"
+        on:click={() => {
+            let cookies = document.cookie.split(";")
+
+            for (let i = 0; i < cookies.length; i++) {
+                let cookie = cookies[i]
+                let eqPos = cookie.indexOf("=")
+                let name = eqPos > -1 ? cookie.substring(0, eqPos) : cookie
+                document.cookie =
+                    name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/"
+            }
+
+            goto("/users/auth/login")
+        }}
+    >
+        <img src={logoutIcon} alt="Log out button" />
+    </button>
 </div>
 
 <style>
@@ -27,21 +47,22 @@
         position: fixed;
         bottom: 1%;
         width: 50%;
-        gap: 1px;
+        gap: 0px;
         display: flex;
         justify-content: center;
         transform: translateX(50%);
     }
 
     /* Style the links inside the navigation bar */
-    .navbar a {
+    .navbar a,
+    .navbar button {
         float: left;
         display: block;
         color: #f2f2f2;
         text-align: center;
         padding: 14px 16px;
         text-decoration: none;
-        font-size: 17px;
+        font-size: 15px;
     }
 
     @media (min-width: 1900px) {
