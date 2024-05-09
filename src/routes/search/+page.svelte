@@ -1,6 +1,7 @@
 <script>
     import GreenLoader from "../../lib/Components/GreenLoader.svelte"
     import SearchResult from "../../lib/Components/SearchResult/SearchResult.svelte"
+    import BottomBar from "../../lib/Components/BottomBar.svelte"
     import duckGreen from "$lib/assets/duckGreen.svg"
     import { onMount } from "svelte"
     import { getCookie } from "../../lib/getCookie"
@@ -104,6 +105,7 @@
         </div>
     </div>
 </main>
+<BottomBar></BottomBar>
 
 <style>
     @media (min-width: 300px) and (max-width: 420px) {
