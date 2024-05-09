@@ -100,8 +100,8 @@
         if (response.status === 200) {
             setCookie("token", response.token, 15)
             setCookie("userName", response.userName, 15)
-            setCookie("userDisplayName", response.userDisplayName, 15)
-            localStorage.setItem("userImage", response.profileImage)
+            setCookie("userDisplayName", response.displayName, 15)
+            localStorage.setItem("userImage", response.profilePic)
             goto(`/users/${getCookie("userName")}`)
         }
     }
