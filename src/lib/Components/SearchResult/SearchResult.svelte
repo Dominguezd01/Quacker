@@ -7,7 +7,7 @@
 <div class="flex flex-col w-[150%]">
     {#if searchResultsInfo.noResults}
         <div class="">
-            <p class="text-xl font-bold">We couldnt find nothing ;C</p>
+            <p class="text-xl font-bold">We could not find anything</p>
         </div>
     {:else}
         {#if searchResultsInfo.users !== undefined && searchResultsInfo.users.length !== 0}
