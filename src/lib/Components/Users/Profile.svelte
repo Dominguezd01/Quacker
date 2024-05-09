@@ -7,6 +7,8 @@
     import Quack from "../Quacks/Quack.svelte"
     import editIcon from "../../assets/edit.svg"
     import GreenLoader from "../GreenLoader.svelte"
+    import followIcon from "$lib/assets/follow.svg"
+    import unfollowIcon from "$lib/assets/unfollow.svg"
     const API = env.PUBLIC_API
     let followed, divButtons
     onMount(() => {
@@ -91,10 +93,10 @@
                         class="w-[128px] imgProfile"
                     />
                     <div class="flex flex-col">
-                        <h1 class="text-5xl font-extrabold">
+                        <h1 class="text-5xl font-extrabold displayName">
                             {userInfo.user.display_name}
                         </h1>
-                        <h3 class="text-2xl font-extrabold">
+                        <h3 class="text-2xl font-extrabold userName">
                             @{userInfo.user.user_name}
                         </h3>
                     </div>
@@ -120,17 +122,29 @@
                         </a>
                     {:else if !followed}
                         <button
-                            class="bg-green-500 p-2 text-center grid place-items-center rounded-md text-xl font-bold"
+                            class="bg-green-500 p-2 text-center grid place-items-center rounded-md text-xl font-bold originalButton"
                             on:click={sendFollow}
                         >
                             FOLLOW
                         </button>
+                        <button
+                            class="bg-green-500 p-2 text-center place-items-center rounded-md text-xl font-bold hidden responsiveButton"
+                            on:click={sendFollow}
+                        >
+                            <img src={followIcon} alt="Follow" />
+                        </button>
                     {:else}
                         <button
-                            class="bg-slate-600 p-2 text-center grid place-items-center rounded-md text-xl font-bold"
+                            class="bg-slate-600 p-2 text-center grid place-items-center rounded-md text-xl font-bold originalButton"
                             on:click={sendUnFollow}
                         >
                             UNFOLLOW
+                        </button>
+                        <button
+                            class="bg-slate-600 p-2 text-center place-items-center rounded-md text-xl font-bold hidden responsiveButton"
+                            on:click={sendFollow}
+                        >
+                            <img src={unfollowIcon} alt="Follow" />
                         </button>
                     {/if}
                 </div>
@@ -142,19 +156,12 @@
                     {/if}
                 </p>
             </div>
-
             <div class="w-full flex items-center">
-                <p class=" ml-32 text-2xl">
+                <p class="text-2xl">
                     <b
                         >{userInfo.user._count
                             .user_follows_user_follows_user_id_followedTousers}</b
                     > followers
-                </p>
-                <p class=" ml-32 text-2xl">
-                    <b
-                        >{userInfo.user._count
-                            .user_follows_user_follows_user_idTousers}</b
-                    > followed
                 </p>
             </div>
         </div>
@@ -194,13 +201,31 @@
             display: none;
         }
         .buttonNameContainer {
-            gap: 20px;
+            flex-direction: column;
+            gap: 0px;
+            justify-items: flex-end;
+            overflow: auto;
+            text-overflow: "...";
         }
         .editButtonResponsive {
             display: block;
         }
         .editButton {
             display: none;
+        }
+        .userName {
+        }
+        .responsiveButton {
+            display: none;
+        }
+
+        .responsiveButton {
+            width: 60px;
+        }
+
+        .userName {
+            font-size: 25px;
+            font-weight: bold;
         }
     }
     @media (min-width: 1900px) and (max-width: 2000px) {

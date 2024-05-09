@@ -41,6 +41,7 @@
 
     socket.on("message", (msg) => {
         msg = JSON.parse(msg)
+        console.log("MENSAJE")
         if (msg.userName !== getCookie("userName")) {
             new Message({
                 target: document.querySelector(".messageContainer"),

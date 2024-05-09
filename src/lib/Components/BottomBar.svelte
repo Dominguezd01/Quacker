@@ -46,11 +46,11 @@
         overflow: hidden;
         position: fixed;
         bottom: 1%;
-        width: 50%;
-        gap: 0px;
+        width: 60%;
+        gap: 1px;
         display: flex;
         justify-content: center;
-        transform: translateX(50%);
+        transform: translateX(35%);
     }
 
     /* Style the links inside the navigation bar */
@@ -60,7 +60,7 @@
         display: block;
         color: #f2f2f2;
         text-align: center;
-        padding: 14px 16px;
+        padding: 10px 12px;
         text-decoration: none;
         font-size: 15px;
     }

@@ -95,12 +95,12 @@
 </script>
 
 <div bind:this={divDialog}></div>
-<div class="grid items-center justify-center m-14 gap-9">
+<div class="grid items-center justify-center m-8 gap-9">
     <form
         on:submit|preventDefault={handleSubmit}
         class="flex flex-col items-center gap-9 justify-center"
     >
-        <div class="grid items-center grid-cols-2 gap-4 text-center m-4">
+        <div class="grid items-center grid-cols-2 gap-4 text-center inputs">
             <div class="grid items-center">
                 <label for="email">Email</label>
                 <input
@@ -138,8 +138,10 @@
                 />
             </div>
         </div>
-
-        <div class="flex items-start gap-6">
+        <a href="/users/auth/login" class="text-green-500 underline"
+            >Already have an account? Sign in</a
+        >
+        <div class="flex items-start gap-6 imgProfile">
             <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
             <!-- svelte-ignore a11y-click-events-have-key-events -->
             <img
@@ -212,5 +214,18 @@
         scale: 1.7;
         border-radius: 10px;
         transform: rotate(2deg);
+    }
+
+    @media (min-width: 100px) and (max-width: 1900px) {
+        .inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .imgProfile {
+            display: grid;
+            gap: 5px;
+            grid-template-columns: repeat(3, 1fr);
+        }
     }
 </style>

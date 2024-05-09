@@ -165,7 +165,7 @@
         <RightAside></RightAside>
     </div>
 </main>
-<ChatBar></ChatBar>
+<BottomBar></BottomBar>
 
 <style>
     main {

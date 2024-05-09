@@ -29,7 +29,6 @@
     })
 
     onDestroy(() => {
-        console.log("destroy")
         socket.close()
     })
     const getEmoji = (room) => {
@@ -166,7 +165,7 @@
         <RightAside></RightAside>
     </div>
 </main>
-<ChatBar></ChatBar>
+<BottomBar></BottomBar>
 
 <style>
     main {

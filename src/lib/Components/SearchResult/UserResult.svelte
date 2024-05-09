@@ -47,35 +47,36 @@
     }
 </script>
 
-<div class="flex flex-row items-center w-[100%] mainDiv">
-    <img
-        src={getImage(user.profile_picture)}
-        alt="Users profile"
-        class="w-24 imgProfile"
-    />
-    <div class="flex flex-col w-[100%] p-1 gap-6 divConBio">
-        <div class="flex flex-row w-[100%] imgButtonFollow">
-            <div class="flex flex-row">
-                <a href="/users/{user.user_name}">
-                    <img
-                        src={getImage(user.profile_picture)}
-                        alt="Users profile"
-                        class="w-24 hidden imgProfileResponsive"
-                    />
-                </a>
-                <div class="flex flex-col gap-2 w-[100%]">
-                    <a
-                        class="flex flex-col gap-2 w-[100%]"
-                        href="/users/{user.user_name}"
-                    >
-                        <p class="font-bold text-2xl">
-                            {user.display_name}
-                        </p>
-                        <p class="text-lg">@{user.user_name}</p>
+{#if !user.isUser}
+    <div class="flex flex-row items-center w-[100%] mainDiv">
+        <img
+            src={getImage(user.profile_picture)}
+            alt="Users profile"
+            class="w-24 imgProfile"
+        />
+        <div class="flex flex-col w-[100%] p-1 gap-6 divConBio">
+            <div class="flex flex-row w-[100%] imgButtonFollow">
+                <div class="flex flex-row">
+                    <a href="/users/{user.user_name}">
+                        <img
+                            src={getImage(user.profile_picture)}
+                            alt="Users profile"
+                            class="hidden imgProfileResponsive"
+                        />
                     </a>
+                    <div class="flex flex-col gap-2 w-[100%]">
+                        <a
+                            class="flex flex-col gap-2 w-[100%]"
+                            href="/users/{user.user_name}"
+                        >
+                            <p class="font-bold text-2xl">
+                                {user.display_name}
+                            </p>
+                            <p class="text-lg">@{user.user_name}</p>
+                        </a>
+                    </div>
                 </div>
-            </div>
-            {#if !user.isUser}
+
                 {#if followed}
                     <div
                         class="flex justify-end w-[100%] h-[100%] btnFollowing"
@@ -97,16 +98,16 @@
                         </button>
                     </div>
                 {/if}
-            {/if}
-        </div>
+            </div>
 
-        <div class="divBio">
-            {#if user.bio !== null}
-                <p class="text-2xl text-wrap userBio">{user.bio}</p>
-            {/if}
+            <div class="divBio">
+                {#if user.bio !== null}
+                    <p class="text-2xl text-wrap userBio">{user.bio}</p>
+                {/if}
+            </div>
         </div>
     </div>
-</div>
+{/if}
 
 <style>
     @media (min-width: 300px) and (max-width: 820px) {
@@ -201,7 +202,7 @@
         }
         .imgProfileResponsive {
             display: block;
-            width: 60px;
+            width: 70px;
         }
         .divBio {
             text-align: center;

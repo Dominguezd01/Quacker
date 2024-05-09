@@ -1,5 +1,17 @@
 <script>
     export let msgInfo
+    let date = new Date(msgInfo.date)
+
+    let minutes = date.getMinutes()
+
+    if (minutes <= 9) {
+        minutes = "0" + minutes.toString()
+    }
+    let seconds = date.getSeconds()
+
+    if (seconds <= 9) {
+        seconds = "0" + seconds.toString()
+    }
 </script>
 
 <div class="flex flex-col items-start message">
@@ -9,5 +21,7 @@
     >
         {msgInfo.msg}
     </p>
-    <p class="messageDate">{msgInfo.date.toLocaleString()}</p>
+    <p class="messageDate">
+        {date.toLocaleDateString()}, {date.getHours()}:{minutes}:{date.getSeconds()}
+    </p>
 </div>

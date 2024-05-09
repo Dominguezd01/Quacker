@@ -76,10 +76,10 @@
 <div class="grid items-center justify-center m-14 login">
     <form
         on:submit|preventDefault={handleSubmit}
-        class="flex flex-col items-center justify-center"
+        class="flex flex-col items-center justify-center gap-2"
     >
         <div
-            class="grid items-center grid-cols-2 gap-4 text-center m-4 inputContainer"
+            class="grid items-center grid-cols-2 gap-6 text-center inputContainer"
         >
             <div class="grid items-center">
                 <label for="email">Username or Email</label>
@@ -102,6 +102,9 @@
                 />
             </div>
         </div>
+        <a href="/users/auth/register" class="text-green-500 underline"
+            >Don't have an account? Register</a
+        >
         <div bind:this={buttonContainer}>
             <input
                 bind:this={submitButton}
