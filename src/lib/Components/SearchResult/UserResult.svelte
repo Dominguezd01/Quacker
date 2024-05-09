@@ -55,7 +55,7 @@
     />
     <div class="flex flex-col w-[100%] p-1 gap-6 divConBio">
         <div class="flex flex-row w-[100%] imgButtonFollow">
-            <div class="flex flex-row">
+            <div class="flex flex-row divNameButton">
                 <a href="/users/{user.user_name}">
                     <img
                         src={getImage(user.profile_picture)}
@@ -114,6 +114,11 @@
 
 <style>
     @media (min-width: 300px) and (max-width: 820px) {
+        .divNameButton {
+            flex-direction: column;
+            justify-content: start;
+            align-items: start;
+        }
         .imgProfile {
             width: 0px;
         }
@@ -129,7 +134,8 @@
         }
         .btnFollowing,
         .btnFollowed {
-            width: 200px;
+            width: 100px;
+            text-align: center;
         }
         .userBio {
             font-size: medium;
@@ -151,6 +157,9 @@
     }
 
     @media (min-width: 820px) and (max-width: 1300px) {
+        .divNameButton {
+            flex-direction: column;
+        }
         .imgProfile {
             width: 0px;
         }
@@ -182,6 +191,9 @@
         }
     }
     @media (min-width: 1300px) and (max-width: 1900px) {
+        .divNameButton {
+            flex-direction: column;
+        }
         .imgProfile {
             width: 0px;
         }
@@ -213,6 +225,9 @@
     }
 
     @media (min-width: 1300px) and (max-width: 1400px) {
+        .divNameButton {
+            flex-direction: column;
+        }
         .imgProfile {
             width: 0px;
         }
@@ -244,6 +259,9 @@
         }
     }
     @media (min-width: 1400px) and (max-width: 1500px) {
+        .divNameButton {
+            flex-direction: column;
+        }
         .imgProfile {
             width: 0px;
         }
@@ -276,6 +294,9 @@
     }
 
     @media (min-width: 1500px) and (max-width: 1600px) {
+        .divNameButton {
+            flex-direction: column;
+        }
         .imgProfile {
             width: 0px;
         }
@@ -307,6 +328,9 @@
         }
     }
     @media (min-width: 1600px) and (max-width: 1700px) {
+        .divNameButton {
+            flex-direction: column;
+        }
         .imgProfile {
             width: 0px;
         }
@@ -339,6 +363,9 @@
     }
 
     @media (min-width: 1700px) and (max-width: 1800px) {
+        .divNameButton {
+            flex-direction: column;
+        }
         .imgProfile {
             width: 0px;
         }
@@ -370,6 +397,9 @@
         }
     }
     @media (min-width: 1800px) and (max-width: 1900px) {
+        .divNameButton {
+            flex-direction: column;
+        }
         .imgProfile {
             width: 0px;
         }
