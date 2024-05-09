@@ -103,11 +103,11 @@
                     </div>
                 {/if}
             </div>
-            <div class="divBio">
-                {#if user.bio !== null}
-                    <p class="text-2xl text-wrap userBio">{user.bio}</p>
-                {/if}
-            </div>
+        </div>
+        <div class="divBio">
+            {#if user.bio !== null}
+                <p class="text-2xl text-wrap userBio">{user.bio}</p>
+            {/if}
         </div>
     </div>
 </div>

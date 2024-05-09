@@ -198,13 +198,15 @@
         <div class="grid items-center justify-center grid-rows-1 grid-cols-2">
             <!-- svelte-ignore a11y-click-events-have-key-events -->
             <div class="flex gap-7 w-full">
-                <img
-                    src={getImage(
-                        quackInfo.user_quack[0].users.profile_picture,
-                    )}
-                    alt="User"
-                    class="w-16 border-solid border-2 rounded-[20%] userImg"
-                />
+                <a href="/users/{quackInfo.user_quack[0].users.user_name}">
+                    <img
+                        src={getImage(
+                            quackInfo.user_quack[0].users.profile_picture,
+                        )}
+                        alt="User"
+                        class="w-16 border-solid border-2 rounded-[20%] userImg"
+                    />
+                </a>
                 <div class="grid items-center">
                     <p class="text-sm/[0px] mb-[-22px]">
                         {quackInfo.user_quack[0].users.display_name}
