@@ -26,32 +26,6 @@ toggle between hiding and showing the dropdown content */
             }
         }
     }
-
-    const handleDelete = async () => {
-        let options = {
-            method: "PATCH",
-            headers: {
-                authorization: getCookie("token"),
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                quackId: quackId,
-            }),
-        }
-
-        let response = await fetch(`${API}/quacks/quack/delete`, options)
-        response = await response.json()
-
-        if (response.status !== 200) {
-            return Swal.fire({
-                title: "CANNOT DELETE THE QUACK",
-
-                icon: "error",
-                showCloseButton: true,
-            })
-        }
-        document.getElementById(quackId).remove()
-    }
 </script>
 
 <div class="dropdown">

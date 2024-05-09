@@ -8,6 +8,7 @@
     import MainPage from "./MainPage.svelte"
     import ContentTooLong from "../Dialogs/ContentTooLong.svelte"
     import { onMount } from "svelte"
+    import Swal from "sweetalert2"
     const API = env.PUBLIC_API
     let quackContent, mainDivQuackCreate
     let divQuacks
@@ -16,10 +17,17 @@
 
     const handleSubmit = async () => {
         let contentQuack = quackContent.value.trim()
-
-        if (contentQuack.trim() == "" || contentQuack.length > 135) {
+        console.log(contentQuack.trim() === "")
+        if (contentQuack.trim() == "" || contentQuack == undefined) {
+            return
         }
-
+        if (contentQuack.length > 135) {
+            Swal.fire({
+                icon: "error",
+                text: "Content too long, max is 135",
+                title: "Error",
+            })
+        }
         let bodyContent = {
             content: contentQuack,
             userId: getCookie("userId"),

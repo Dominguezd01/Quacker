@@ -211,7 +211,7 @@
 <style>
     .selectedItem {
         border: solid 2px #22c55e;
-        scale: 1.7;
+        scale: 1.1;
         border-radius: 10px;
         transform: rotate(2deg);
     }

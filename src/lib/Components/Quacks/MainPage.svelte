@@ -37,11 +37,20 @@
         </div>
     {:then quacks}
         <div class="flex flex-col-reverse quacks">
-            <div bind:this={quackContainer} id="quacksDiv" class="w-[100%]">
-                {#each quacks as quack}
-                    <Quack quackInfo={quack}></Quack>
-                {/each}
-            </div>
+            {#if quacks.length === 0}
+                <div>
+                    <h1 class="text-center">
+                        Follow someone to see their quacks!!
+                    </h1>
+                    <div bind:this={quackContainer}></div>
+                </div>
+            {:else}
+                <div bind:this={quackContainer} id="quacksDiv" class="w-[100%]">
+                    {#each quacks as quack}
+                        <Quack quackInfo={quack}></Quack>
+                    {/each}
+                </div>
+            {/if}
             <QuackCreate mainDiv={quackContainer}></QuackCreate>
         </div>
     {/await}

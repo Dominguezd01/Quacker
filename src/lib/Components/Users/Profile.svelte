@@ -213,7 +213,9 @@
         .editButton {
             display: none;
         }
-        .userName {
+        .displayName {
+            font-size: 25px;
+            font-weight: bold;
         }
         .responsiveButton {
             display: none;
@@ -224,7 +226,7 @@
         }
 
         .userName {
-            font-size: 25px;
+            font-size: 20px;
             font-weight: bold;
         }
     }

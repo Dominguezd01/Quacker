@@ -5,13 +5,16 @@
     import defaultProfilePicture from "$lib/assets/defaultProfilePicture.jpg"
     import likePlain from "$lib/assets/like.svg"
     import likeGreen from "$lib/assets/likeGreen.svg"
+    import deleteIcon from "$lib/assets/delete.svg"
+    import editIcon from "$lib/assets/editQuack.svg"
     import requackPlain from "$lib/assets/requack.svg"
     import requackGreen from "$lib/assets/requackGreen.svg"
     import comment from "$lib/assets/comment.svg"
     import { env } from "$env/dynamic/public"
     import Dropdown from "../../Dropdown.svelte"
+    import Swal from "sweetalert2"
     const API = env.PUBLIC_API
-    let imgLike, greenLikeCounter, imgRequack
+    let imgLike, greenLikeCounter, imgRequack, quackDiv
     let likeCount = quackInfo._count.user_quack_like
     let isLike = quackInfo.user_quack_like.length > 0
     let isRepost = quackInfo.requacks.length > 0
@@ -31,7 +34,46 @@
         }
         await requack()
     }
+    const handleDelete = async () => {
+        let options = {
+            method: "PATCH",
+            headers: {
+                authorization: getCookie("token"),
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                quackId: quackInfo.quack_id,
+            }),
+        }
 
+        Swal.fire({
+            icon: "warning",
+            title: "Caution!!",
+            text: "You cant undo this action",
+            showConfirmButton: true,
+            showDenyButton: true,
+            confirmButtonText: "Delete it!",
+            confirmButtonColor: "#f20707",
+            denyButtonColor: "#22c55e",
+            denyButtonText: "Nope!",
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                let response = await fetch(
+                    `${API}/quacks/quack/delete`,
+                    options,
+                )
+                response = await response.json()
+                if (response.status !== 200) {
+                    return Swal.fire({
+                        title: "CANNOT DELETE THE QUACK",
+                        icon: "error",
+                        showCloseButton: true,
+                    })
+                }
+                quackDiv.remove()
+            }
+        })
+    }
     const likeQuack = async () => {
         isLike = true
         likeCount++
@@ -148,20 +190,20 @@
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-<article class="w-[100%]" id={quackInfo.quack_id}>
+<article class="w-[100%]" id={quackInfo.quack_id} bind:this={quackDiv}>
     <div class="grid items-center gap-4 border-solid border-2 p-4 rounded-md">
         <!--
         Image and names container
     -->
         <div class="grid items-center justify-center grid-rows-1 grid-cols-2">
             <!-- svelte-ignore a11y-click-events-have-key-events -->
-            <div class="flex gap-7 w-full" role="button" tabindex="10px">
+            <div class="flex gap-7 w-full">
                 <img
                     src={getImage(
                         quackInfo.user_quack[0].users.profile_picture,
                     )}
                     alt="User"
-                    class="w-16 border-solid border-2 bg-white rounded-[20%] userImg"
+                    class="w-16 border-solid border-2 rounded-[20%] userImg"
                 />
                 <div class="grid items-center">
                     <p class="text-sm/[0px] mb-[-22px]">
@@ -173,9 +215,20 @@
                 </div>
             </div>
 
-            <div class="flex flex-row-reverse gap-0 w-full">
+            <div class="flex flex-row-reverse gap-6 w-full justify-items-end">
                 {#if quackInfo.isFromUser}
-                    <Dropdown quackId={quackInfo.quack_id}></Dropdown>
+                    <img
+                        class="w-10 buttonsDeleteEdit"
+                        src={deleteIcon}
+                        on:click={handleDelete}
+                        alt="Delete icon"
+                    />
+                    <a
+                        href="/quacks/quack/edit/{quackInfo.quack_id}"
+                        class="w-10 buttonsDeleteEdit"
+                    >
+                        <img src={editIcon} alt="Delete icon" />
+                    </a>
                 {/if}
             </div>
         </div>
@@ -283,13 +336,17 @@
 
     @media (min-width: 300px) and (max-width: 1900px) {
         .buttonContainer {
-            gap: 80px;
+            gap: 40px;
         }
         .userImg {
             width: 60px;
         }
     }
-
+    @media (min-width: 300px) and (max-width: 500px) {
+        .buttonsDeleteEdit {
+            width: 30px;
+        }
+    }
     .content {
         line-break: strict;
         word-break: normal;
