@@ -8,7 +8,7 @@
     let textArea, content
     const handleSubmit = async () => {
         let content = textArea.value.trim()
-
+        textArea.value = ""
         if (content === "" || content.length > 500) {
             alert("TOO LONG")
             return

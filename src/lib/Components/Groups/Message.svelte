@@ -22,6 +22,6 @@
         {msgInfo.msg}
     </p>
     <p class="messageDate">
-        {date.toLocaleDateString()}, {date.getHours()}:{minutes}:{date.getSeconds()}
+        {date.toLocaleDateString()}, {date.getHours()}:{minutes}:{seconds}
     </p>
 </div>
