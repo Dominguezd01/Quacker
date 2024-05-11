@@ -69,7 +69,7 @@
                         showCloseButton: true,
                     })
                 }
-                if ((location.href = `/quacks/quack/${quackInfo.quack_id}}`)) {
+                if (location.href == `/quacks/quack/${quackInfo.quack_id}}`) {
                     goto("/quacks/main")
                 }
                 quackDiv.remove()
