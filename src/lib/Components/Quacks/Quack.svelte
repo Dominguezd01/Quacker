@@ -2,16 +2,15 @@
     export let quackInfo
     import { getCookie } from "../../getCookie.js"
     import { getImage } from "../../getImage.js"
-    import defaultProfilePicture from "$lib/assets/defaultProfilePicture.jpg"
     import likePlain from "$lib/assets/like.svg"
     import likeGreen from "$lib/assets/likeGreen.svg"
     import deleteIcon from "$lib/assets/delete.svg"
     import editIcon from "$lib/assets/editQuack.svg"
     import requackPlain from "$lib/assets/requack.svg"
     import requackGreen from "$lib/assets/requackGreen.svg"
+    import { goto } from "$app/navigation"
     import comment from "$lib/assets/comment.svg"
     import { env } from "$env/dynamic/public"
-    import Dropdown from "../../Dropdown.svelte"
     import Swal from "sweetalert2"
     const API = env.PUBLIC_API
     let imgLike, greenLikeCounter, imgRequack, quackDiv
@@ -69,6 +68,9 @@
                         icon: "error",
                         showCloseButton: true,
                     })
+                }
+                if ((location.href = `/quacks/quack/${quackInfo.quack_id}}`)) {
+                    goto("/quacks/main")
                 }
                 quackDiv.remove()
             }

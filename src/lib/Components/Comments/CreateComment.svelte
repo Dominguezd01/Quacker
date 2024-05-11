@@ -2,6 +2,7 @@
     import { getCookie } from "../../getCookie"
     import Comment from "./Comment.svelte"
     import { env } from "$env/dynamic/public"
+    import Swal from "sweetalert2"
     const API = env.PUBLIC_API
 
     export let quackId
@@ -9,8 +10,12 @@
     const handleSubmit = async () => {
         let content = textArea.value.trim()
         textArea.value = ""
-        if (content === "" || content.length > 500) {
-            alert("TOO LONG")
+        if (content === "" || content.length > 135) {
+            Swal.fire({
+                icon: "error",
+                title: "Content too long",
+                showCloseButton: true,
+            })
             return
         }
 
