@@ -17,7 +17,7 @@
 
     const handleSubmit = async () => {
         let contentQuack = quackContent.value.trim()
-        quackContent = ""
+        quackContent.value = ""
         console.log(contentQuack.trim() === "")
         if (contentQuack.trim() == "" || contentQuack == undefined) {
             return
