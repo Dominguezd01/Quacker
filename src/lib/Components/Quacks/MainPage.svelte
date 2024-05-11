@@ -25,7 +25,9 @@
         }
         let response = await fetch(`${API}/quacks/main`, options)
         response = await response.json()
-        if (response.status == 403) location.href = "/users/auth/login"
+        if (response.status == 403 || response.status == 401)
+            location.href = "/users/auth/login"
+
         return response.quacks
     }
 </script>

@@ -4,6 +4,7 @@
     import { getCookie } from "../../getCookie.js"
     import { getImage } from "../../getImage.js"
     import { env } from "$env/dynamic/public"
+    import Swal from "sweetalert2"
     const API = env.PUBLIC_API
     let textArea
     let btnSubmit
@@ -30,8 +31,23 @@
 
         response = await response.json()
 
-        if (response.status !== 200) {
-            alert(response.msg)
+        if (response.status == 400) {
+            Swal.fire({
+                icon: "warning",
+                title: "Cannot edit the quack",
+            })
+        } else if (response.status === 401 || response.status == 403) {
+            let cookies = document.cookie.split(";")
+
+            for (let i = 0; i < cookies.length; i++) {
+                let cookie = cookies[i]
+                let eqPos = cookie.indexOf("=")
+                let name = eqPos > -1 ? cookie.substring(0, eqPos) : cookie
+                document.cookie =
+                    name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/"
+            }
+            localStorage.clear()
+            location.href = "/users/auth/login"
         } else {
             goto("/quacks/main")
         }

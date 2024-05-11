@@ -53,6 +53,20 @@
             isLike = false
             likeCount -= 1
         }
+
+        if (response.status === 401 || response.status == 403) {
+            let cookies = document.cookie.split(";")
+
+            for (let i = 0; i < cookies.length; i++) {
+                let cookie = cookies[i]
+                let eqPos = cookie.indexOf("=")
+                let name = eqPos > -1 ? cookie.substring(0, eqPos) : cookie
+                document.cookie =
+                    name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/"
+            }
+            localStorage.clear()
+            location.href = "/users/auth/login"
+        }
     }
 
     const disLikeQuack = async () => {
@@ -76,6 +90,20 @@
         if (response.status !== 200) {
             isLike = true
             likeCount--
+        }
+
+        if (response.status === 401 || response.status == 403) {
+            let cookies = document.cookie.split(";")
+
+            for (let i = 0; i < cookies.length; i++) {
+                let cookie = cookies[i]
+                let eqPos = cookie.indexOf("=")
+                let name = eqPos > -1 ? cookie.substring(0, eqPos) : cookie
+                document.cookie =
+                    name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/"
+            }
+            localStorage.clear()
+            location.href = "/users/auth/login"
         }
     }
 
@@ -102,6 +130,20 @@
             // imgRequack.src = requackPlain
             isRepost = false
             repostCount -= 1
+        }
+
+        if (response.status === 401 || response.status == 403) {
+            let cookies = document.cookie.split(";")
+
+            for (let i = 0; i < cookies.length; i++) {
+                let cookie = cookies[i]
+                let eqPos = cookie.indexOf("=")
+                let name = eqPos > -1 ? cookie.substring(0, eqPos) : cookie
+                document.cookie =
+                    name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/"
+            }
+            localStorage.clear()
+            location.href = "/users/auth/login"
         }
     }
 
@@ -131,6 +173,20 @@
             //re.src = likePlain
             isRepost = true
             repostCount -= 1
+        }
+
+        if (response.status === 401 || response.status == 403) {
+            let cookies = document.cookie.split(";")
+
+            for (let i = 0; i < cookies.length; i++) {
+                let cookie = cookies[i]
+                let eqPos = cookie.indexOf("=")
+                let name = eqPos > -1 ? cookie.substring(0, eqPos) : cookie
+                document.cookie =
+                    name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/"
+            }
+            localStorage.clear()
+            location.href = "/users/auth/login"
         }
     }
 </script>
