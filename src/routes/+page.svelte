@@ -2,7 +2,7 @@
     <p
         class="text-[220px] font-bold grid items-center quackerTitle justify-center text-white font-[prompt] transition-all hover:text-quacker"
     >
-        DUCKER
+        QUACKER
     </p>
 
     <div
