@@ -24,14 +24,15 @@ Install all the dependencies:
 npm install
 ```
 
-Finally you can run the following commands depending on what you want:
+#Development server:
 
-# Start the development server in the background
+Start the development server in the background
 ```bash
 npm run dev
 ```
+
+Or start the server and open the app in a new browser tab
 ```
-# Or start the server and open the app in a new browser tab
 npm run dev -- --open
 ```
 
