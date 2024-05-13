@@ -4,7 +4,7 @@ This is Quacker, a Twitter inspired social media made for my final project of th
 
 If you want to be able to use the app in a complete way, you should clone the [API](https://github.com/Dominguezd01/QuackerAPI "API repo") repository.
 
-## Developing
+# Download the project
 
 First you have to clone the repository:
 
