@@ -24,7 +24,7 @@ Install all the dependencies:
 npm install
 ```
 
-#Development server:
+# Development server:
 
 Start the development server in the background
 ```bash
@@ -36,7 +36,7 @@ Or start the server and open the app in a new browser tab
 npm run dev -- --open
 ```
 
-## Building
+# Building
 
 To create a production version of the app:
 
