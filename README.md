@@ -23,7 +23,11 @@ Install all the dependencies:
 ```bash
 npm install
 ```
-
+Create a .env file in the root of the project with the following variables, change their values you need
+```
+PUBLIC_API= http://localhost:3333 #Change this to any url you want
+PUBLIC_WS= http://localhost:3334 #Change this to any url you want
+```
 # Development server:
 
 Start the development server in the background
