@@ -1,6 +1,6 @@
 # Quacker
 
-This is Ducker, a Twitter inspired social media made for my final project of this year.
+This is Quacker, a Twitter inspired social media made for my final project of this year.
 
 If you want to be able to use the app in a complete way, you should clone the [API](https://github.com/Dominguezd01/QuackerAPI "API repo") repository.
 
