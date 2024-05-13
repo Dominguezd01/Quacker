@@ -1,4 +1,4 @@
-# Ducker
+# Quacker
 
 This is Ducker, a Twitter inspired social media made for my final project of this year.
 
@@ -9,13 +9,13 @@ If you want to be able to use the app in a complete way, you should clone the [A
 First you have to clone the repository:
 
 ```bash
-git clone https://github.com/Dominguezd01/Ducker.git
+git clone https://github.com/Dominguezd01/Quacker.git
 ```
 
 Go to the directory
 
 ```bash
-cd Ducker
+cd Quacker
 ```
 
 Install all the dependencies:
@@ -26,16 +26,18 @@ npm install
 
 Finally you can run the following commands depending on what you want:
 
+# Start the development server in the background
 ```bash
 npm run dev
-
-# or start the server and open the app in a new browser tab
+```
+```
+# Or start the server and open the app in a new browser tab
 npm run dev -- --open
 ```
 
 ## Building
 
-To create a production version of your app:
+To create a production version of the app:
 
 ```bash
 npm run build
